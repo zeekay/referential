@@ -1,0 +1,55 @@
+{
+  "name": "referential",
+  "version": "0.0.1",
+  "description": "Reactive immutable datastructures you can share.",
+  "homepage": "http://github.com/zeekay/referential",
+  "bugs": "http://github.com/zeekay/referential/issues",
+  "keywords": [
+    "cursor",
+    "datastructure",
+    "flux",
+    "immutable",
+    "react",
+    "reactive",
+    "state",
+    "store",
+    "tree"
+  ],
+  "main": "lib/",
+  "engines": {
+    "node": ">=4.0.0"
+  },
+  "scripts": {
+    "prepublish": "cake build-min",
+    "test": "cake build && cake test"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/zeekay/referential/blob/master/LICENSE"
+    }
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/zeekay/referential"
+  },
+  "devDependencies": {
+    "chai": "^3.4.1",
+    "chai-as-promised": "^5.1.0",
+    "co-mocha": "^1.1.2",
+    "codecov.io": "^0.1.6",
+    "coffee-script": "^1.10.0",
+    "coveralls": "^2.11.4",
+    "es5-shim": "^4.1.13",
+    "istanbul": "^0.4.1",
+    "mocha": "^2.3.4",
+    "mocha-lcov-reporter": "^1.0.0",
+    "moment": "^2.10.6",
+    "postmortem": "^0.2.3",
+    "requisite": "^1.14.0",
+    "shortcake": "^1.1.7",
+    "uglify-js": "^2.6.1"
+  },
+  "dependencies": {}
+}
