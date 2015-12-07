@@ -1,6 +1,6 @@
 {
   "name": "referential",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Reactive immutable datastructures you can share.",
   "homepage": "http://github.com/zeekay/referential",
   "bugs": "http://github.com/zeekay/referential/issues",

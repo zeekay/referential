@@ -7,7 +7,7 @@ Reactive immutable data structures you can share.
 $ npm install referential
 ```
 
-[referential.js]: https://cdn.rawgit.com/zeekay/referential/v0.0.1/referential.min.js
+[referential.js]: https://cdn.rawgit.com/zeekay/referential/v0.1.0/referential.min.js
 [travis-url]: https://travis-ci.org/zeekay/referential
 [travis-image]: https://img.shields.io/travis/zeekay/referential.svg
 [coveralls-url]: https://coveralls.io/r/zeekay/referential/
