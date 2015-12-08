@@ -46,7 +46,9 @@ ref3() // {f: 6, g: 6}
 ref2() // {f: 6, g: 5}
 ```
 
-More examples in [`test/`](test).
+Check the tests for [more examples][examples].
+
+[examples]: https://github.com/zeekay/referential/blob/master/test/test.coffee
 
 [travis-url]: https://travis-ci.org/zeekay/referential
 [travis-image]: https://img.shields.io/travis/zeekay/referential.svg
