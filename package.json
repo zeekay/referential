@@ -1,7 +1,7 @@
 {
   "name": "referential",
   "version": "0.3.2",
-  "description": "Safely contain mutable state using references.",
+  "description": "Mutable state container for sharing data safely in a functional or reactive programming style.",
   "homepage": "http://github.com/zeekay/referential",
   "bugs": "http://github.com/zeekay/referential/issues",
   "keywords": [
