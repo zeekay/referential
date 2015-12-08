@@ -4,7 +4,7 @@ isNumber = require 'is-number'
 isObject = require 'is-object'
 isString = require 'is-string'
 
-class Ref
+module.exports = class Ref
   constructor: (@_value, @parent, @key) ->
 
   # Get value of this or parent Ref
@@ -83,5 +83,3 @@ class Ref
           obj[key[0]] ?= {}
 
       @index (key.slice 1), value, obj[key[0]], obj
-
-module.exports = Ref

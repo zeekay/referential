@@ -46,15 +46,17 @@ task 'test', 'Run tests', (opts) ->
 
   if coverage
     bin = 'istanbul cover --print=none -x "lib/**" _mocha --'
+    mapOrCoverage = "coffee-coverage/register-istanbul"
   else
     bin = 'mocha'
+    mapOrCoverage = "postmortem/register"
 
   {status} = yield exec.interactive "NODE_ENV=test #{verbose}
         #{bin}
         --colors
         --reporter spec
         --compilers coffee:coffee-script/register
-        --require coffee-coverage/register-istanbul
+        --require #{mapOrCoverage}
         --require co-mocha
         --recursive
         #{bail}
