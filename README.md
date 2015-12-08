@@ -26,7 +26,7 @@ ref.set('d.e.f', 4) // {a: 1, b: 2, c: 3, d: {e: {f: 4}}}
 
 // Get reference to subtree
 ref2 = ref.refer('d.e')
-ref2()       // {f: 4}
+ref2()           // {f: 4}
 ref2.set('g', 5) // {f: 4, g: 5}
 
 // Mutate subtree (and update parent)
