@@ -41,7 +41,7 @@ ref3() // {f: 6, g: 6}
 ref2() // {f: 6, g: 5}
 ```
 
-More examples in [`tests/`](tests).
+More examples in [`test/`](test).
 
 [referential.js]: https://cdn.rawgit.com/zeekay/referential/v0.1.0/referential.min.js
 [travis-url]: https://travis-ci.org/zeekay/referential
