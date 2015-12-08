@@ -1,1 +1,1 @@
-global.Referential = module.exports = require './ref'
+global.Referential = module.exports = require './referential'
