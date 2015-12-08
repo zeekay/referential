@@ -30,6 +30,9 @@ task 'build', 'build project', (cb) ->
 task 'build-min', 'build project', ['build'], ->
   exec 'uglifyjs referential.js --compress --mangle --lint=false > referential.min.js'
 
+task 'watch', 'watch for changes and recompile project', ->
+  exec 'coffee -bcmw -o lib/ src/'
+
 server = do require 'connect'
 
 task 'static-server', 'Run static server for tests', (cb) ->
@@ -42,7 +45,7 @@ task 'test', 'Run tests', ['build', 'static-server'], (opts) ->
   bail     = opts.bail     ? true
   coverage = opts.coverage ? false
   grep     = opts.grep     ? ''
-  test     = opts.test     ? 'test/ test/server/ test/browser/'
+  test     = opts.test     ? 'test/'
   verbose  = opts.verbose  ? ''
 
   bail    = '--bail' if bail
@@ -67,22 +70,12 @@ task 'test', 'Run tests', ['build', 'static-server'], (opts) ->
         #{test}"
 
   server.close()
-  process.exit status
+  process.exit status if opts.ci
 
 task 'test-ci', 'Run tests', (opts) ->
-  invoke 'test', bail: true, coverage: true
+  invoke 'test', bail: true, coverage: true, ci: true
 
-task 'coverage', 'Process coverage statistics', ->
-  exec '''
-    cat ./coverage/lcov.info | coveralls
-    cat ./coverage/coverage.json | codecov
-    rm -rf coverage/
-    '''
-
-task 'watch', 'watch for changes and recompile project', ->
-  exec 'coffee -bcmw -o lib/ src/'
-
-task 'watch:test', 'watch for changes and re-run tests', ->
+task 'test:watch', 'watch for changes and re-run tests', ->
   invoke 'watch'
 
   require('vigil').watch __dirname, (filename, stats) ->
@@ -91,6 +84,13 @@ task 'watch:test', 'watch for changes and re-run tests', ->
 
     if /^test/.test filename
       invoke 'test', test: filename
+
+task 'coverage', 'Process coverage statistics', ->
+  exec '''
+    cat ./coverage/lcov.info | coveralls
+    cat ./coverage/coverage.json | codecov
+    rm -rf coverage/
+    '''
 
 task 'major', ['version'], ->
 task 'minor', ['version'], ->
