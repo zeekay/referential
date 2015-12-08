@@ -33,7 +33,7 @@ task 'build-min', 'build project', ['build'], ->
 task 'watch', 'watch for changes and recompile project', ->
   exec 'coffee -bcmw -o lib/ src/'
 
-task 'test', 'Run tests', ['build'], (opts) ->
+task 'test', 'Run tests', (opts) ->
   bail     = opts.bail     ? true
   coverage = opts.coverage ? false
   grep     = opts.grep     ? ''
@@ -45,7 +45,7 @@ task 'test', 'Run tests', ['build'], (opts) ->
   verbose = 'VERBOSE=true' if verbose
 
   if coverage
-    bin = 'istanbul --print=none cover _mocha --'
+    bin = 'istanbul cover --print=none -x "lib/**" _mocha --'
   else
     bin = 'mocha'
 
@@ -53,11 +53,11 @@ task 'test', 'Run tests', ['build'], (opts) ->
         #{bin}
         --colors
         --reporter spec
-        --timeout 10000000
         --compilers coffee:coffee-script/register
-        --require co-mocha
-        --require coffee-coverage/register
         --require postmortem/register
+        --require coffee-coverage/register-istanbul
+        --require co-mocha
+        --recursive
         #{bail}
         #{grep}
         #{test}"

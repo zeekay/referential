@@ -46,7 +46,6 @@
     "es5-shim": "^4.1.13",
     "istanbul": "^0.4.1",
     "mocha": "^2.3.4",
-    "mocha-lcov-reporter": "^1.0.0",
     "moment": "^2.10.6",
     "postmortem": "^0.2.3",
     "requisite": "^1.14.0",
@@ -58,6 +57,7 @@
     "is-array": "^1.0.1",
     "is-number": "^2.1.0",
     "is-object": "^1.0.1",
-    "is-string": "^1.0.4"
+    "is-string": "^1.0.4",
+    "mocha": "^2.3.4"
   }
 }
