@@ -21,4 +21,4 @@ notifications:
 before_install:
   - export TRAVIS_COMMIT_MSG="$(git log --format=%B --no-merges -n 1)"
 after_success:
-  - node_modules/.bin/shortcake coverage
+  - node_modules/.bin/shortcake coverage:process

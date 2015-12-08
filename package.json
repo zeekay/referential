@@ -53,6 +53,7 @@
     "uglify-js": "^2.6.1"
   },
   "dependencies": {
+    "coffee-script": "^1.10.0",
     "extend": "^3.0.0",
     "is-array": "^1.0.1",
     "is-number": "^2.1.0",

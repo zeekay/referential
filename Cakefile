@@ -54,7 +54,6 @@ task 'test', 'Run tests', (opts) ->
         --colors
         --reporter spec
         --compilers coffee:coffee-script/register
-        --require postmortem/register
         --require coffee-coverage/register-istanbul
         --require co-mocha
         --recursive
@@ -77,7 +76,11 @@ task 'test:watch', 'watch for changes and re-run tests', ->
     if /^test/.test filename
       invoke 'test', test: filename
 
-task 'coverage', 'Process coverage statistics', ->
+task 'coverage', 'Display code coverage', ->
+  yield invoke 'test', bail: true, coverage: true
+  exec 'bebop -o coverage/lcov-report/index.html --no-compile'
+
+task 'coverage:process', 'Process coverage statistics', ->
   exec '''
     cat ./coverage/lcov.info | coveralls
     cat ./coverage/coverage.json | codecov
