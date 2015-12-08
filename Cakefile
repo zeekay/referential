@@ -33,7 +33,7 @@ task 'build-min', 'build project', ['build'], ->
 task 'watch', 'watch for changes and recompile project', ->
   exec 'coffee -bcmw -o lib/ src/'
 
-task 'test', 'Run tests', (opts) ->
+task 'test', 'Run tests', ['build'], (opts) ->
   bail     = opts.bail     ? true
   coverage = opts.coverage ? false
   grep     = opts.grep     ? ''
