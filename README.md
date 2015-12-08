@@ -54,7 +54,7 @@ Check the tests for [more examples][examples].
 [travis-url]:       https://travis-ci.org/zeekay/referential
 [travis-image]:     https://img.shields.io/travis/zeekay/referential.svg
 [coveralls-url]:    https://coveralls.io/github/zeekay/referential?branch=master
-[coveralls-image]:  https://img.shields.io/coveralls/zeekay/referential.svg
+[coveralls-image]:  https://coveralls.io/repos/zeekay/referential/badge.svg?branch=master&service=github
 [npm-url]:          https://www.npmjs.com/package/referential
 [npm-image]:        https://img.shields.io/npm/v/referential.svg
 [downloads-image]:  https://img.shields.io/npm/dm/referential.svg
