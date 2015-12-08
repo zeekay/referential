@@ -12,8 +12,13 @@ $ npm install referential
 ```javascript
 Ref = require('referential')
 
+// Create a reference
 ref = new Ref({a: 1})
+
+// Get underlying value of reference
 ref.get('a')        // 1
+
+// Mutate state
 ref.set('b', 2)     // {a: 1, b: 2}
 ref.set({c: 3})     // {a: 1, b: 2, c: 3}}
 ref.set('d.e.f', 4) // {a: 1, b: 2, c: 3, d: {e: {f: 4}}}
@@ -21,10 +26,17 @@ ref.set('d.e.f', 4) // {a: 1, b: 2, c: 3, d: {e: {f: 4}}}
 // Get reference to subtree
 ref2 = ref.ref('d.e')
 ref2.get()       // {f: 4}
-ref2.set('g', 5) // {g: 5}
+ref2.set('g', 5) // {f: 4, g: 5}
 
+// Mutate subtree (and update parent)
 ref.set('d.e.f', 6)
 ref.get()  // {a: 1, b: 2, c: 3, d: {e: {f: 6, g: 5}}}
+ref2.get() // {f: 6, g: 5}
+
+// Clone ref, create new tree
+ref3 = ref2.clone()
+ref3.set('g', 6)
+ref3.get() // {f: 6, g: 6}
 ref2.get() // {f: 6, g: 5}
 ```
 
