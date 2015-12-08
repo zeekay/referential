@@ -1,1 +1,4 @@
-module.exports = require './referential'
+refer     = require './refer'
+refer.Ref = require './ref'
+
+module.exports = refer
