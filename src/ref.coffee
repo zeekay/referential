@@ -1,30 +1,72 @@
-isObject     = require 'is-object'
-isArray      = require 'is-array'
-objectAssign = require 'object-assign'
+extend   = require 'extend'
+isArray  = require 'is-array'
+isNumber = require 'is-number'
+isObject = require 'is-object'
+isString = require 'is-string'
 
 module.exports = class Ref
-  constructor: (@value, @parent) ->
+  constructor: (@_value, @parent, @selector) ->
 
-  get: ->
-    @value
+  value: (state) ->
+    if @parent?
+      return @parent.get @selector
+
+    if state?
+      @_value = state
+    @_value
+
+  get: (key) ->
+    unless key?
+      @value()
+    else
+      @index key
 
   set: (key, value) ->
-    if value?
-      @value[key] = value
+    unless value?
+      @value extend @value(), key
     else
-      for own k, v of key
-        @value[k] = v
+      @index key, value
+    @
 
-  extend: (obj) ->
-    @value = objectAssign obj, @value
+  clone: (key, value) ->
+    new Ref extend true, {}, @value()
 
-  # encapsulate: (value) ->
-  #   if isArray value
-  #     for v in value
-  #       @encapsulate v, root
+  extend: (key, value) ->
+    unless value?
+      @value extend, true, @value(), key
+    else
+      if isObject value
+        @value extend true, (@ref key).get(), value
+      else
+        clone = @clone()
+        @set key, value
+        @value extend true, clone.get(), @value()
+    @
 
-  #   else if isObject value
-  #     for own k,v of value
-  #       @encapsulate v, root
+  index: (selector, value, obj=@value(), prev=null) ->
+    if isNumber selector
+      selector = String selector
 
-  #   new Ref @obj, @
+    if isString selector
+      @index (selector.split '.'), value, obj
+    else if selector.length == 0
+      obj
+    else if selector.length == 1
+      if value?
+        obj[selector[0]] = value
+      else
+        obj[selector[0]]
+    else
+      next = selector[1]
+      unless obj[next]?
+        if isNumber next
+          obj[selector[0]] = []
+        else
+          obj[selector[0]] = {}
+
+      @index (selector.slice 1), value, obj[selector[0]], obj
+
+  ref: (key) ->
+    unless key?
+      @
+    new Ref null, @, key
