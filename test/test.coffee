@@ -1,8 +1,8 @@
 require './helper'
 extend = require 'extend'
 
-Ref   = require '../src/ref'
-refer = require '../src/refer'
+Ref   = require '../lib/ref'
+refer = require '../lib/refer'
 
 clone = (obj) ->
   extend true, {}, obj
