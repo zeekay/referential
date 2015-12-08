@@ -37,8 +37,8 @@ module.exports = class Ref
       @index key, value
     @
 
-  clone: (key, value) ->
-    new Ref extend true, {}, @value()
+  clone: (key) ->
+    new Ref extend true, {}, @get key
 
   # Deep set some value
   extend: (key, value) ->
