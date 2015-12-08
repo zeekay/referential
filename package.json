@@ -56,7 +56,6 @@
     "is-array": "^1.0.1",
     "is-number": "^2.1.0",
     "is-object": "^1.0.1",
-    "is-string": "^1.0.4",
-    "object-assign": "^4.0.1"
+    "is-string": "^1.0.4"
   }
 }
