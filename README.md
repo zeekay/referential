@@ -59,5 +59,5 @@ Check the tests for [more examples][examples].
 [npm-image]:        https://img.shields.io/npm/v/referential.svg
 [downloads-image]:  https://img.shields.io/npm/dm/referential.svg
 [downloads-url]:    http://badge.fury.io/js/referential
-[gitter-url]:       https://gitter.im/zeekay/say-hi
+[gitter-url]:       https://gitter.im/zeekay/hi
 [gitter-image]:     https://badges.gitter.im/join-chat.svg
