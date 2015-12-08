@@ -40,6 +40,7 @@
     "chai-as-promised": "^5.1.0",
     "co-mocha": "^1.1.2",
     "codecov.io": "^0.1.6",
+    "coffee-coverage": "^0.7.0",
     "coffee-script": "^1.10.0",
     "coveralls": "^2.11.4",
     "es5-shim": "^4.1.13",
