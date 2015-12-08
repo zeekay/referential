@@ -9,9 +9,6 @@ $ npm install referential
 ```
 
 ## Usage
-
-More examples in [`tests/`](tests).
-
 ```javascript
 Ref = require('referential')
 
@@ -30,6 +27,8 @@ ref.set('d.e.f', 6)
 ref.get()  // {a: 1, b: 2, c: 3, d: {e: {f: 6, g: 5}}}
 ref2.get() // {f: 6, g: 5}
 ```
+
+More examples in [`tests/`](tests).
 
 [referential.js]: https://cdn.rawgit.com/zeekay/referential/v0.1.0/referential.min.js
 [travis-url]: https://travis-ci.org/zeekay/referential
