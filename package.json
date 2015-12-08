@@ -51,5 +51,9 @@
     "shortcake": "^1.1.7",
     "uglify-js": "^2.6.1"
   },
-  "dependencies": {}
+  "dependencies": {
+    "is-array": "^1.0.1",
+    "is-object": "^1.0.1",
+    "object-assign": "^4.0.1"
+  }
 }
