@@ -49,15 +49,15 @@ ref2() // {f: 6, g: 5}
 
 Check the tests for [more examples][examples].
 
-[examples]: https://github.com/zeekay/referential/blob/master/test/test.coffee
+[examples]:         https://github.com/zeekay/referential/blob/master/test/test.coffee
 
-[travis-url]: https://travis-ci.org/zeekay/referential
-[travis-image]: https://img.shields.io/travis/zeekay/referential.svg
-[coveralls-url]: https://coveralls.io/r/zeekay/referential/
-[coveralls-image]: https://img.shields.io/coveralls/zeekay/referential.svg
-[npm-url]: https://www.npmjs.com/package/referential
-[npm-image]: https://img.shields.io/npm/v/referential.svg
-[downloads-image]: https://img.shields.io/npm/dm/referential.svg
-[downloads-url]: http://badge.fury.io/js/referential
-[gitter-url]: https://gitter.im/zeekay/referential
-[gitter-image]: https://img.shields.io/badge/gitter-join_chat-brightgreen.svg
+[travis-url]:       https://travis-ci.org/zeekay/referential
+[travis-image]:     https://img.shields.io/travis/zeekay/referential.svg
+[coveralls-url]:    https://coveralls.io/r/zeekay/referential/
+[coveralls-image]:  https://img.shields.io/coveralls/zeekay/referential.svg
+[npm-url]:          https://www.npmjs.com/package/referential
+[npm-image]:        https://img.shields.io/npm/v/referential.svg
+[downloads-image]:  https://img.shields.io/npm/dm/referential.svg
+[downloads-url]:    http://badge.fury.io/js/referential
+[gitter-url]:       https://gitter.im/zeekay/referential
+[gitter-image]:     https://img.shields.io/badge/gitter-join_chat-brightgreen.svg
