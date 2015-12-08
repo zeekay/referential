@@ -7,6 +7,7 @@ isString = require 'is-string'
 module.exports = class Ref
   constructor: (@_value, @parent, @selector) ->
 
+  # Get value of this or parent Ref
   value: (state) ->
     if @parent?
       return @parent.get @selector
@@ -15,12 +16,20 @@ module.exports = class Ref
       @_value = state
     @_value
 
+  # Get a ref to this or subtree
+  ref: (key) ->
+    unless key?
+      @
+    new Ref null, @, key
+
+  # Get state or subtree
   get: (key) ->
     unless key?
       @value()
     else
       @index key
 
+  # Set value overwriting tree alogn way
   set: (key, value) ->
     unless value?
       @value extend @value(), key
@@ -31,6 +40,7 @@ module.exports = class Ref
   clone: (key, value) ->
     new Ref extend true, {}, @value()
 
+  # Deep set some value
   extend: (key, value) ->
     unless value?
       @value extend, true, @value(), key
@@ -43,6 +53,7 @@ module.exports = class Ref
         @value extend true, clone.get(), @value()
     @
 
+  # Walk tree using selector, optionally update value
   index: (selector, value, obj=@value(), prev=null) ->
     if isNumber selector
       selector = String selector
@@ -65,8 +76,3 @@ module.exports = class Ref
           obj[selector[0]] = {}
 
       @index (selector.slice 1), value, obj[selector[0]], obj
-
-  ref: (key) ->
-    unless key?
-      @
-    new Ref null, @, key
