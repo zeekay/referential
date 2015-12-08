@@ -1,7 +1,8 @@
 # referential [![Build Status][travis-image]][travis-url] [![Coverage Status][coveralls-image]][coveralls-url] [![NPM version][npm-image]][npm-url]  [![Gitter chat][gitter-image]][gitter-url]
-#### Safely contain mutable state using references.
+#### Safely contain mutable state with references.
 
-Sometimes you just want to pass a big bag of state round. Lightweight immutable datastructures for JavaScript.
+Share mutable state safely. References and subtrees always refer to same
+underlying data regardless where in your application it's mutated.
 
 ## Install
 ```bash
