@@ -2,12 +2,12 @@ require './helper'
 extend = require 'extend'
 
 Ref   = require '../lib/ref'
-refer = require '../lib/referential'
+refer = require '../lib/refer'
 
 clone = (obj) ->
   extend true, {}, obj
 
-describe 'referential', ->
+describe 'refer', ->
   it 'should create Ref from values', ->
     ref = refer {a: 1}
     ref().should.eql {a: 1}
