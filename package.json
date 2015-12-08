@@ -1,6 +1,6 @@
 {
   "name": "referential",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Safely contain mutable state using references.",
   "homepage": "http://github.com/zeekay/referential",
   "bugs": "http://github.com/zeekay/referential/issues",
