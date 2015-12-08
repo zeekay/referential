@@ -21,7 +21,7 @@ ref('a') // 1
 
 // Mutate state
 ref.set('b', 2)     // {a: 1, b: 2}
-ref.set({c: 3})     // {a: 1, b: 2, c: 3}}
+ref.set({c: 3})     // {a: 1, b: 2, c: 3}
 
 // Create entire tree as needed
 ref.set('d.e.f', 4) // {a: 1, b: 2, c: 3, d: {e: {f: 4}}}

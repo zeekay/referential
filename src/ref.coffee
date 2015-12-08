@@ -5,21 +5,25 @@ isObject = require 'is-object'
 isString = require 'is-string'
 
 module.exports = class Ref
-  constructor: (@_value, @parent, @selector) ->
+  constructor: (@_value, @parent, @key) ->
 
   # Get value of this or parent Ref
   value: (state) ->
-    if @parent?
-      return @parent.get @selector
+    unless @parent?
+      if state?
+        @_value = state
+      return @_value
 
     if state?
-      @_value = state
-    @_value
+      @parent.set @key, state
+    else
+      @parent.get @key
 
   # Get a ref to this or subtree
   ref: (key) ->
     unless key?
-      @
+      return @
+
     new Ref null, @, key
 
   # Get state or subtree
@@ -53,26 +57,29 @@ module.exports = class Ref
         @value extend true, clone.get(), @value()
     @
 
-  # Walk tree using selector, optionally update value
-  index: (selector, value, obj=@value(), prev=null) ->
-    if isNumber selector
-      selector = String selector
+  # Walk tree using key, optionally update value
+  index: (key, value, obj=@value(), prev=null) ->
+    if @parent?
+      return @parent.index @key + '.' + key, value
 
-    if isString selector
-      @index (selector.split '.'), value, obj
-    else if selector.length == 0
+    if isNumber key
+      key = String key
+
+    if isString key
+      @index (key.split '.'), value, obj
+    else if key.length == 0
       obj
-    else if selector.length == 1
+    else if key.length == 1
       if value?
-        obj[selector[0]] = value
+        obj[key[0]] = value
       else
-        obj[selector[0]]
+        obj[key[0]]
     else
-      next = selector[1]
+      next = key[1]
       unless obj[next]?
         if isNumber next
-          obj[selector[0]] = []
+          obj[key[0]] ?= []
         else
-          obj[selector[0]] = {}
+          obj[key[0]] ?= {}
 
-      @index (selector.slice 1), value, obj[selector[0]], obj
+      @index (key.slice 1), value, obj[key[0]], obj
