@@ -56,6 +56,7 @@ task 'test', 'Run tests', ['build'], (opts) ->
         --timeout 10000000
         --compilers coffee:coffee-script/register
         --require co-mocha
+        --require coffee-coverage/register
         --require postmortem/register
         #{bail}
         #{grep}
