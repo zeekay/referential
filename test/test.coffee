@@ -7,10 +7,10 @@ referential = require '../lib'
 clone = (obj) ->
   extend true, {}, obj
 
-describe 'referential', ->
-  it 'should return underlying values', ->
-    ref = referential a: 1
-    ref().should.eql a: 1
+# describe 'referential', ->
+#   it 'should return underlying values', ->
+#     ref = referential a: 1
+#     ref().should.eql a: 1
 
 describe 'Ref', ->
   it 'should create new refs', ->
