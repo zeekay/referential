@@ -1,4 +1,4 @@
-# referential [![Build Status][travis-img]][travis-url] [![Coverage Status][coveralls-img]][coveralls-url] [![Dependency Status][dependency-img]][dependency-url] [![NPM version][npm-img]][npm-url]  [![Gitter chat][gitter-img]][gitter-url]
+# referential [![NPM version][npm-img]][npm-url] [![Build Status][travis-img]][travis-url] [![Coverage Status][coveralls-img]][coveralls-url] [![Dependency Status][dependency-img]][dependency-url] [![Gitter chat][gitter-img]][gitter-url]
 #### Safely contain mutable state with references.
 
 Share mutable state safely. References and subtrees always refer to same
