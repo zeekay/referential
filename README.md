@@ -51,16 +51,16 @@ Check the tests for [more examples][examples].
 
 [examples]:         https://github.com/zeekay/referential/blob/master/test/test.coffee
 
-[coveralls-image]:  https://coveralls.io/repos/zeekay/referential/badge.svg?branch=master&service=github
-[coveralls-url]:    https://coveralls.io/github/zeekay/referential?branch=master
-[dependency-image]: https://david-dm.org/benbria/referential
-[dependency-url]:   https://david-dm.org/benbria/referential.svg
-[gitter-image]:     https://badges.gitter.im/join-chat.svg
-[gitter-url]:       https://gitter.im/zeekay/hi
-[npm-image]:        https://img.shields.io/npm/v/referential.svg
-[npm-url]:          https://www.npmjs.com/package/referential
 [travis-image]:     https://img.shields.io/travis/zeekay/referential.svg
 [travis-url]:       https://travis-ci.org/zeekay/referential
+[coveralls-image]:  https://coveralls.io/repos/zeekay/referential/badge.svg?branch=master&service=github
+[coveralls-url]:    https://coveralls.io/github/zeekay/referential?branch=master
+[dependency-image]: https://david-dm.org/zeekay/referential
+[dependency-url]:   https://david-dm.org/zeekay/referential.svg
+[npm-image]:        https://img.shields.io/npm/v/referential.svg
+[npm-url]:          https://www.npmjs.com/package/referential
+[gitter-image]:     https://badges.gitter.im/join-chat.svg
+[gitter-url]:       https://gitter.im/zeekay/hi
 
 <!-- not used -->
 [downloads-image]:     https://img.shields.io/npm/dm/referential.svg
