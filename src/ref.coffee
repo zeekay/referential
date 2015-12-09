@@ -1,4 +1,4 @@
-extend   = require 'extend'
+extend   = require 'node.extend'
 isArray  = require 'is-array'
 isNumber = require 'is-number'
 isObject = require 'is-object'
