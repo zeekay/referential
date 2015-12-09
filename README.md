@@ -1,4 +1,6 @@
-# referential [![Build Status][travis-image]][travis-url] [![Coverage Status][coveralls-image]][coveralls-url] [![NPM version][npm-image]][npm-url]  [![Gitter chat][gitter-image]][gitter-url]
+# referential [![Build Status][travis-image]][travis-url] [![Coverage Status][coveralls-image]][coveralls-url]
+[![Dependency Status][]
+[![NPM version][npm-image]][npm-url]  [![Gitter chat][gitter-image]][gitter-url]
 #### Safely contain mutable state with references.
 
 Share mutable state safely. References and subtrees always refer to same
@@ -51,13 +53,19 @@ Check the tests for [more examples][examples].
 
 [examples]:         https://github.com/zeekay/referential/blob/master/test/test.coffee
 
-[travis-url]:       https://travis-ci.org/zeekay/referential
-[travis-image]:     https://img.shields.io/travis/zeekay/referential.svg
-[coveralls-url]:    https://coveralls.io/github/zeekay/referential?branch=master
 [coveralls-image]:  https://coveralls.io/repos/zeekay/referential/badge.svg?branch=master&service=github
-[npm-url]:          https://www.npmjs.com/package/referential
-[npm-image]:        https://img.shields.io/npm/v/referential.svg
-[downloads-image]:  https://img.shields.io/npm/dm/referential.svg
-[downloads-url]:    http://badge.fury.io/js/referential
-[gitter-url]:       https://gitter.im/zeekay/hi
+[coveralls-url]:    https://coveralls.io/github/zeekay/referential?branch=master
+[dependency-image]: https://david-dm.org/benbria/referential
+[dependency-url]:   https://david-dm.org/benbria/referential.svg
 [gitter-image]:     https://badges.gitter.im/join-chat.svg
+[gitter-url]:       https://gitter.im/zeekay/hi
+[npm-image]:        https://img.shields.io/npm/v/referential.svg
+[npm-url]:          https://www.npmjs.com/package/referential
+[travis-image]:     https://img.shields.io/travis/zeekay/referential.svg
+[travis-url]:       https://travis-ci.org/zeekay/referential
+
+<!-- not used -->
+[downloads-image]:     https://img.shields.io/npm/dm/referential.svg
+[downloads-url]:       http://badge.fury.io/js/referential
+[devdependency-image]: https://david-dm.org/zeekay/referential/dev-status.svg
+[devdependency-url]:   https://david-dm.org/zeekay/referential#info=devDependencies

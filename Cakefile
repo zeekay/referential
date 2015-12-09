@@ -1,5 +1,9 @@
 require 'shortcake'
 
+use do require 'cake-chai'
+use do require 'cake-coverage'
+use do require 'cake-mocha'
+
 fs        = require 'fs'
 requisite = require 'requisite'
 
@@ -32,51 +36,6 @@ task 'build-min', 'build project', ['build'], ->
 
 task 'watch', 'watch for changes and recompile project', ->
   exec 'coffee -bcmw -o lib/ src/'
-
-task 'test', 'Run tests', (opts) ->
-  bail     = opts.bail     ? true
-  coverage = opts.coverage ? false
-  grep     = opts.grep     ? ''
-  test     = opts.test     ? 'test/'
-  verbose  = opts.verbose  ? ''
-
-  bail    = '--bail' if bail
-  grep    = "--grep #{opts.grep}" if grep
-  verbose = 'VERBOSE=true' if verbose
-
-  if coverage
-    bin = 'istanbul cover --print=none -x "lib/**" _mocha --'
-    mapOrCoverage = "coffee-coverage/register-istanbul"
-  else
-    bin = 'mocha'
-    mapOrCoverage = "postmortem/register"
-
-  {status} = yield exec.interactive "NODE_ENV=test #{verbose}
-        #{bin}
-        --colors
-        --reporter spec
-        --compilers coffee:coffee-script/register
-        --require #{mapOrCoverage}
-        --require co-mocha
-        --recursive
-        #{bail}
-        #{grep}
-        #{test}"
-
-  process.exit status if opts.ci
-
-task 'test-ci', 'Run tests', (opts) ->
-  invoke 'test', bail: true, coverage: true, ci: true
-
-task 'test:watch', 'watch for changes and re-run tests', ->
-  invoke 'watch'
-
-  require('vigil').watch __dirname, (filename, stats) ->
-    if /^src/.test filename
-      invoke 'test'
-
-    if /^test/.test filename
-      invoke 'test', test: filename
 
 task 'coverage', 'Display code coverage', ->
   yield invoke 'test', bail: true, coverage: true
