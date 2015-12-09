@@ -51,19 +51,19 @@ Check the tests for [more examples][examples].
 
 [examples]:         https://github.com/zeekay/referential/blob/master/test/test.coffee
 
-[travis-image]:     https://img.shields.io/travis/zeekay/referential.svg
-[travis-url]:       https://travis-ci.org/zeekay/referential
-[coveralls-image]:  https://coveralls.io/repos/zeekay/referential/badge.svg?branch=master&service=github
-[coveralls-url]:    https://coveralls.io/github/zeekay/referential?branch=master
-[dependency-image]: https://david-dm.org/zeekay/referential
-[dependency-url]:   https://david-dm.org/zeekay/referential.svg
-[npm-image]:        https://img.shields.io/npm/v/referential.svg
-[npm-url]:          https://www.npmjs.com/package/referential
-[gitter-image]:     https://badges.gitter.im/join-chat.svg
-[gitter-url]:       https://gitter.im/zeekay/hi
+[travis-img]:     https://img.shields.io/travis/zeekay/referential.svg
+[travis-url]:     https://travis-ci.org/zeekay/referential
+[coveralls-img]:  https://coveralls.io/repos/zeekay/referential/badge.svg?branch=master&service=github
+[coveralls-url]:  https://coveralls.io/github/zeekay/referential?branch=master
+[dependency-url]: https://david-dm.org/zeekay/referential
+[dependency-img]: https://david-dm.org/zeekay/referential.svg
+[npm-img]:        https://img.shields.io/npm/v/referential.svg
+[npm-url]:        https://www.npmjs.com/package/referential
+[gitter-img]:     https://badges.gitter.im/join-chat.svg
+[gitter-url]:     https://gitter.im/zeekay/hi
 
 <!-- not used -->
-[downloads-image]:     https://img.shields.io/npm/dm/referential.svg
-[downloads-url]:       http://badge.fury.io/js/referential
-[devdependency-image]: https://david-dm.org/zeekay/referential/dev-status.svg
-[devdependency-url]:   https://david-dm.org/zeekay/referential#info=devDependencies
+[downloads-img]:     https://img.shields.io/npm/dm/referential.svg
+[downloads-url]:     http://badge.fury.io/js/referential
+[devdependency-img]: https://david-dm.org/zeekay/referential/dev-status.svg
+[devdependency-url]: https://david-dm.org/zeekay/referential#info=devDependencies
