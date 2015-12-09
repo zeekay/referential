@@ -38,6 +38,7 @@
   "devDependencies": {
     "cake-chai": "^0.1.0",
     "cake-coverage": "0.0.1",
+    "cake-publish": "^0.1.0",
     "chai": "^3.4.1",
     "chai-as-promised": "^5.1.0",
     "co-mocha": "^1.1.2",
