@@ -1,8 +1,8 @@
 require 'shortcake'
 
-use do require 'cake-chai'
-use do require 'cake-coverage'
-use do require 'cake-mocha'
+use 'cake-chai'
+use 'cake-coverage'
+use 'cake-mocha'
 
 fs        = require 'fs'
 requisite = require 'requisite'
