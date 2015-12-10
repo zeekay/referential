@@ -3,9 +3,6 @@ require './helper'
 Ref   = require '../src/ref'
 refer = require '../src/refer'
 
-clone = (obj) ->
-  extend true, {}, obj
-
 describe 'refer', ->
   it 'should create Ref from values', ->
     ref = refer {a: 1}
