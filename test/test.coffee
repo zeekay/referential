@@ -42,30 +42,66 @@ describe 'Ref', ->
     ref = new Ref 1
     ref.get().should.eq 1
 
-  it 'should encapsulate objects', ->
-    ref = new Ref a: 1
-    ref.get().should.eql a: 1
+  describe '.get', ->
+    it 'should return encapsulate objects', ->
+      ref = new Ref a: 1
+      ref.get().should.eql a: 1
 
-  it 'should encapsulate arrays', ->
-    ref = new Ref [1,2,3]
-    ref.get().should.eql [1,2,3]
+    it 'should encapsulate arrays', ->
+      ref = new Ref [1,2,3]
+      ref.get().should.eql [1,2,3]
 
-  it 'should use parent if one exists', ->
-    tree =
-      a: 1
-      b:
-        c: 2
+    it 'should use parent if one exists', ->
+      tree =
+        a: 1
+        b:
+          c: 2
 
-    r = new Ref clone tree
-    r2 = r.ref('b')
-    r.set 'b', c: 3
-    r.set 'b', c: 88
-    r2.set 'c', 99
-    r.get().should.eql
-      a: 1
-      b:
-        c: 99
-    r2.get().should.eql c: 99
+      r = new Ref clone tree
+      r2 = r.ref('b')
+      r.set 'b', c: 3
+      r2.set 'c', 99
+      r.get().should.eql
+        a: 1
+        b:
+          c: 99
+      r2.get().should.eql c: 99
+
+    it 'should not use cache erroneously', ->
+      tree =
+        a: 1
+        b:
+          c: 2
+
+      r = new Ref clone tree
+      r2 = r.ref('b')
+      r.set 'b', c: 1
+      r.get().b.c.should.eq 1
+      r2.get().should.eql c: 1
+
+      r2.set 'c', 2
+      r.get().b.c.should.eq 2
+      r2.get().should.eql c: 2
+
+      r.set 'b', c: 3
+      r.get().b.c.should.eq 3
+      r2.get().should.eql c: 3
+
+      r2.set 'c', 4
+      r.get().b.c.should.eq 4
+      r2.get().should.eql c: 4
+
+      r.set 'b', c: 5
+      r.get().b.c.should.eq 5
+      r2.get().should.eql c: 5
+
+      r2.set 'c', 6
+      r.get().b.c.should.eq 6
+      r2.get().should.eql c: 6
+
+      r.set 'b', c: 7
+      r.get().b.c.should.eq 7
+      r2.get().should.eql c: 7
 
   describe '.set', ->
     it 'should set encapsulated values', ->
