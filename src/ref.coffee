@@ -77,12 +77,18 @@ module.exports = class Ref
 
     props = key.split '.'
 
+    unless value?
+      # Get is simple, doesn't need to create properties as it goes
+      while prop = props.shift()
+        unless props.length
+          return obj[prop]
+        obj = obj[prop]
+      return
+
+    # Set version creates tree if necessary
     while prop = props.shift()
       unless props.length
-        if value?
-          return obj[prop] = value
-        else
-          return obj[prop]
+        return obj[prop] = value
       else
         next = props[0]
         unless obj[next]?
@@ -90,6 +96,5 @@ module.exports = class Ref
             obj[prop] ?= []
           else
             obj[prop] ?= {}
-
       obj = obj[prop]
     return
