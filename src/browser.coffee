@@ -1,1 +1,1 @@
-window.Referential = require './'
+global.Referential = require './'

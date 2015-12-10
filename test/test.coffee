@@ -1,7 +1,7 @@
 require './helper'
 
-Ref   = require '../src/ref'
-refer = require '../src/refer'
+refer = require '../src'
+Ref   = refer.Ref
 
 describe 'refer', ->
   it 'should create Ref from values', ->
@@ -171,6 +171,9 @@ describe 'Ref', ->
       tree.b.e.f = 6
       ref.get().should.eql tree
 
+      ref.extend {c: 3}
+      ref.get().c.should.eq 3
+
   describe '.ref', ->
     it 'should return a reference', ->
       tree =
@@ -181,3 +184,20 @@ describe 'Ref', ->
       r = new Ref clone tree
       r2 = r.ref('b')
       r2.get().should.eql c: 2
+
+  describe '.value', ->
+    it 'should get state and set state', ->
+      tree =
+        a: 1
+        b:
+          c: 2
+
+      r = new Ref clone tree
+      r.value().should.eql tree
+      r.value tree
+      r.value().should.eql tree
+
+describe 'browser', ->
+  it 'should expose window.Referential', ->
+    require '../src/browser'
+    Referential.should.exist
