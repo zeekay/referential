@@ -8,8 +8,8 @@ module.exports = class Ref
   constructor: (@_value, @parent, @key) ->
     @_cache = {}
 
-  # Clear the cache in case we've mutated
-  _mutated: ->
+  # Clear the cache
+  _mutate: ->
     @_cache = {}
 
   # Get value of this or parent Ref
@@ -36,15 +36,16 @@ module.exports = class Ref
     unless key?
       @value()
     else
-      @index key
+      # return @_cache[key] if @_cache[key]?
+      @_cache[key] = @index key
 
   # Set value overwriting tree alogn way
   set: (key, value) ->
+    @_mutate()
     unless value?
       @value extend @value(), key
     else
       @index key, value
-    @_mutated()
     @
 
   clone: (key) ->
@@ -52,6 +53,7 @@ module.exports = class Ref
 
   # Deep set some value
   extend: (key, value) ->
+    @_mutate()
     unless value?
       @value extend, true, @value(), key
     else
@@ -61,7 +63,6 @@ module.exports = class Ref
         clone = @clone()
         @set key, value
         @value extend true, clone.get(), @value()
-    @_mutated()
     @
 
   # Walk tree using key, optionally update value
@@ -92,5 +93,4 @@ module.exports = class Ref
             obj[prop] ?= {}
 
       obj = obj[prop]
-
-    @_cache[key] = obj
+    obj
