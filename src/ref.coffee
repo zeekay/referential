@@ -75,9 +75,6 @@ module.exports = class Ref
     if isNumber key
       key = String key
 
-    # Return cached copy if we have one
-    return @_cache[key] if @_cache[key]
-
     props = key.split '.'
 
     while prop = props.shift()
