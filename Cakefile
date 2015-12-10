@@ -1,8 +1,7 @@
 require 'shortcake'
 
-use 'cake-chai'
-use 'cake-coverage'
 use 'cake-test'
+use 'cake-publish'
 use 'cake-version'
 
 fs        = require 'fs'
