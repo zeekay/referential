@@ -14,7 +14,7 @@ module.exports = class Ref
 
   # Get value of this or parent Ref
   value: (state) ->
-    unless @parent?
+    unless @parent
       if state?
         @_value = state
       return @_value
@@ -26,36 +26,35 @@ module.exports = class Ref
 
   # Get a ref to this or subtree
   ref: (key) ->
-    unless key?
+    unless key
       return @
 
     new Ref null, @, key
 
   # Get state or subtree
   get: (key) ->
-    unless key?
+    unless key
       @value()
     else
-      return @_cache[key] if @_cache[key]?
+      return @_cache[key] if @_cache[key]
       @_cache[key] = @index key
 
   # Set value overwriting tree alogn way
   set: (key, value) ->
     @_mutate()
+
     unless value?
       @value extend @value(), key
     else
       @index key, value
     @
 
-  clone: (key) ->
-    new Ref extend true, {}, @get key
-
   # Deep set some value
   extend: (key, value) ->
     @_mutate()
+
     unless value?
-      @value extend, true, @value(), key
+      @value extend true, @value(), key
     else
       if isObject value
         @value extend true, (@ref key).get(), value
@@ -65,16 +64,19 @@ module.exports = class Ref
         @value extend true, clone.get(), @value()
     @
 
+  clone: (key) ->
+    new Ref extend true, {}, @get key
+
   # Walk tree using key, optionally update value
   index: (key, value, obj=@value(), prev=null) ->
-    if @parent?
+    if @parent
       return @parent.index @key + '.' + key, value
 
     if isNumber key
       key = String key
 
     # Return cached copy if we have one
-    return @_cache[key] if @_cache[key]?
+    return @_cache[key] if @_cache[key]
 
     props = key.split '.'
 
