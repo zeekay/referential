@@ -4,6 +4,8 @@ Referential makes it easy to share mutable state safely. A `Ref` to an object
 or subtree always refers to the same underlying data regardless how it's
 mutated.
 
+Heavily optimized for reads.
+
 ### Motivating example
 ```javascript
 var state = {a: {b: {c: "world"}}}
