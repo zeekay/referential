@@ -8,7 +8,7 @@ node_js:
   - 4
   - 5
 script:
-  - node_modules/.bin/shortcake test-ci
+  - node_modules/.bin/shortcake test:ci
 cache:
   directories:
   - node_modules
