@@ -14,7 +14,7 @@ module.exports = class Ref
 
   # Get value of this or parent Ref
   value: (state) ->
-    unless @parent?
+    unless @parent
       if state?
         @_value = state
       return @_value
@@ -33,7 +33,7 @@ module.exports = class Ref
 
   # Get state or subtree
   get: (key) ->
-    unless key?
+    unless key
       @value()
     else
       # return @_cache[key] if @_cache[key]?
@@ -67,14 +67,11 @@ module.exports = class Ref
 
   # Walk tree using key, optionally update value
   index: (key, value, obj=@value(), prev=null) ->
-    if @parent?
+    if @parent
       return @parent.index @key + '.' + key, value
 
     if isNumber key
       key = String key
-
-    # Return cached copy if we have one
-    return @_cache[key] if @_cache[key]?
 
     props = key.split '.'
 
