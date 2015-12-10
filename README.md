@@ -24,6 +24,10 @@ ref('a') // 1
 ref.set('b', 2) // {a: 1, b: 2}
 ref.set({c: 3}) // {a: 1, b: 2, c: 3}
 
+// Extend state
+ref.extend({c: {d: 1, e: 2}}) // {a: 1, b: 2, c: {d: 1, e: 2}}
+ref.extend({c: {d: 3}})       // {a: 1, b: 2, c: {d: 3, e: 2}}
+
 // Create entire tree as needed
 ref.set('d.e.f', 4) // {a: 1, b: 2, c: 3, d: {e: {f: 4}}}
 
