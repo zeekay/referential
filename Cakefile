@@ -2,7 +2,7 @@ require 'shortcake'
 
 use 'cake-chai'
 use 'cake-coverage'
-use 'cake-mocha'
+use 'cake-test'
 use 'cake-version'
 
 fs        = require 'fs'

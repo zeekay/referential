@@ -40,17 +40,18 @@
     "cake-coverage": "0.0.1",
     "cake-mocha": "0.0.1",
     "cake-publish": "^0.1.0",
+    "cake-test": "0.0.6",
     "cake-version": "^0.1.0",
     "chai": "^3.4.1",
     "chai-as-promised": "^5.1.0",
-    "co-mocha": "^1.1.2",
+    "co-mocha": "1.1.2",
     "codecov.io": "^0.1.6",
     "coffee-coverage": "^0.7.0",
     "coffee-script": "^1.10.0",
     "coveralls": "^2.11.4",
     "es5-shim": "^4.1.13",
     "istanbul": "^0.4.1",
-    "mocha": "^2.3.4",
+    "mocha": "2.3.4",
     "moment": "^2.10.6",
     "postmortem": "^0.2.4",
     "requisite": "^1.14.0",
@@ -64,6 +65,6 @@
     "is-object": "^1.0.1",
     "is-string": "^1.0.4",
     "mocha": "^2.3.4",
-    "node.extend": "^1.1.5"
+    "node.extend": "1.1.5"
   }
 }
