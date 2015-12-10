@@ -6,6 +6,11 @@ isString = require 'is-string'
 
 module.exports = class Ref
   constructor: (@_value, @parent, @key) ->
+    @_cache = {}
+
+  # Clear the cache in case we've mutated
+  _mutated: ->
+    @_cache = {}
 
   # Get value of this or parent Ref
   value: (state) ->
@@ -39,6 +44,7 @@ module.exports = class Ref
       @value extend @value(), key
     else
       @index key, value
+    @_mutated()
     @
 
   clone: (key) ->
@@ -55,6 +61,7 @@ module.exports = class Ref
         clone = @clone()
         @set key, value
         @value extend true, clone.get(), @value()
+    @_mutated()
     @
 
   # Walk tree using key, optionally update value
@@ -65,21 +72,25 @@ module.exports = class Ref
     if isNumber key
       key = String key
 
-    if isString key
-      @index (key.split '.'), value, obj
-    else if key.length == 0
-      obj
-    else if key.length == 1
-      if value?
-        obj[key[0]] = value
-      else
-        obj[key[0]]
-    else
-      next = key[1]
-      unless obj[next]?
-        if isNumber next
-          obj[key[0]] ?= []
-        else
-          obj[key[0]] ?= {}
+    # Return cached copy if we have one
+    return @_cache[key] if @_cache[key]?
 
-      @index (key.slice 1), value, obj[key[0]], obj
+    props = key.split '.'
+
+    while prop = props.shift()
+      if props.length == 0
+        if value?
+          return obj[prop] = value
+        else
+          return obj[prop]
+      else
+        next = props[0]
+        unless obj[next]?
+          if isNumber next
+            obj[prop] ?= []
+          else
+            obj[prop] ?= {}
+
+      obj = obj[prop]
+
+    @_cache[key] = obj
