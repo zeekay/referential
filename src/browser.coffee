@@ -1,1 +1,1 @@
-global.Referential = module.exports = require './'
+window.Referential = require './'
