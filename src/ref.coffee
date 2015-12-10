@@ -26,7 +26,7 @@ module.exports = class Ref
 
   # Get a ref to this or subtree
   ref: (key) ->
-    unless key?
+    unless key
       return @
 
     new Ref null, @, key
@@ -36,7 +36,7 @@ module.exports = class Ref
     unless key
       @value()
     else
-      # return @_cache[key] if @_cache[key]?
+      return @_cache[key] if @_cache[key]
       @_cache[key] = @index key
 
   # Set value overwriting tree alogn way
@@ -72,6 +72,9 @@ module.exports = class Ref
 
     if isNumber key
       key = String key
+
+    # Return cached copy if we have one
+    return @_cache[key] if @_cache[key]
 
     props = key.split '.'
 

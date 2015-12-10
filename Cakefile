@@ -36,21 +36,3 @@ task 'build-min', 'build project', ['build'], ->
 
 task 'watch', 'watch for changes and recompile project', ->
   exec 'coffee -bcmw -o lib/ src/'
-
-task 'coverage', 'Display code coverage', ->
-  yield invoke 'test', bail: true, coverage: true
-  exec 'bebop -o coverage/lcov-report/index.html --no-compile'
-
-task 'coverage:process', 'Process coverage statistics', ->
-  exec '''
-    cat ./coverage/lcov.info | coveralls
-    cat ./coverage/coverage.json | codecov
-    rm -rf coverage/
-    '''
-
-task 'publish', 'publish project', ->
-  exec.parallel '''
-  git push
-  git push --tags
-  npm publish
-  '''
