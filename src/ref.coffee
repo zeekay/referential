@@ -68,7 +68,7 @@ module.exports = class Ref
     new Ref extend true, {}, @get key
 
   # Walk tree using key, optionally update value
-  index: (key, value, obj=@value(), prev=null) ->
+  index: (key, value, obj=@value(), prev) ->
     if @parent
       return @parent.index @key + '.' + key, value
 
@@ -78,7 +78,7 @@ module.exports = class Ref
     props = key.split '.'
 
     while prop = props.shift()
-      if props.length == 0
+      unless props.length
         if value?
           return obj[prop] = value
         else
@@ -92,4 +92,4 @@ module.exports = class Ref
             obj[prop] ?= {}
 
       obj = obj[prop]
-    obj
+    return
