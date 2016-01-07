@@ -51,6 +51,11 @@ describe 'Ref', ->
       ref = new Ref [1,2,3]
       ref.get().should.eql [1,2,3]
 
+    it 'should not error on invalid key', ->
+      ref = new Ref a: 1
+      ref.get('b')
+      ref.get('b.c.d')
+
     it 'should use parent if one exists', ->
       tree =
         a: 1

@@ -81,8 +81,8 @@ module.exports = class Ref
       # Get is simple, doesn't need to create properties as it goes
       while prop = props.shift()
         unless props.length
-          return obj[prop]
-        obj = obj[prop]
+          return obj?[prop]
+        obj = obj?[prop]
       return
 
     # Set version creates tree if necessary
