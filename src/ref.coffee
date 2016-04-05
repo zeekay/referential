@@ -18,7 +18,8 @@ module.exports = class Ref
     @
 
   # Clear the cache
-  _mutate: ->
+  _mutate: (key) ->
+    # TODO: do something smarter with key rather than wiping out entire cache
     @_cache = {}
 
     # clear children as well
@@ -63,7 +64,7 @@ module.exports = class Ref
 
   # Set value overwriting tree along way
   set: (key, value) ->
-    @_mutate()
+    @_mutate key
 
     unless value?
       @value extend @value(), key
@@ -73,7 +74,7 @@ module.exports = class Ref
 
   # Deep set some value
   extend: (key, value) ->
-    @_mutate()
+    @_mutate key
 
     unless value?
       @value extend true, @value(), key
