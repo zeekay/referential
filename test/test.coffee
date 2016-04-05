@@ -108,6 +108,19 @@ describe 'Ref', ->
       r.get().b.c.should.eq 7
       r2.get().should.eql c: 7
 
+      tree =
+        items: [
+          {a: 1, b: 2}
+          {a: 2, b: 3}
+        ]
+
+      r1 = refer clone tree
+      r2 = r1.refer 'items.0'
+      (r2.get 'a').should.eq 1
+      (r1.set 'items.0.a', 42)
+      (r1.get 'items.0.a').should.eq 42
+      (r2.get 'a').should.eq 42
+
   describe '.set', ->
     it 'should set encapsulated values', ->
       ref = new Ref a: 1

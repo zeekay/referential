@@ -4,13 +4,35 @@ isNumber = require 'is-number'
 isObject = require 'is-object'
 isString = require 'is-string'
 
+nextId = do ->
+  ids = 0
+  -> ids++
+
 module.exports = class Ref
   constructor: (@_value, @parent, @key) ->
-    @_cache = {}
+    @_cache    = {}
+    @_children = {}
+    @_id       = nextId()
+
+    @parent._children[@_id] = @ if @parent?
+    @
 
   # Clear the cache
   _mutate: ->
     @_cache = {}
+
+    # clear children as well
+    child._mutate() for id, child of @_children
+
+    @
+
+  # Removes reference
+  destroy: ->
+    child.destroy() for id, child of @_children
+    delete @_cache
+    delete @_children
+    delete @parent._children[@_id]
+    @
 
   # Get value of this or parent Ref
   value: (state) ->
@@ -39,7 +61,7 @@ module.exports = class Ref
       return @_cache[key] if @_cache[key]
       @_cache[key] = @index key
 
-  # Set value overwriting tree alogn way
+  # Set value overwriting tree along way
   set: (key, value) ->
     @_mutate()
 
