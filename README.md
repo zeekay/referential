@@ -1,5 +1,7 @@
 # referential [![NPM version][npm-img]][npm-url] [![Build Status][travis-img]][travis-url] [![Coverage Status][coveralls-img]][coveralls-url] [![Dependency Status][dependency-img]][dependency-url] [![Gitter chat][gitter-img]][gitter-url]
 #### Refer to mutable state safely.
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/zeekay/referential.svg)](https://greenkeeper.io/)
 Referential makes it easy to share mutable state safely. A `Ref` to an object
 or subtree always refers to the same underlying data regardless how it's
 mutated.
