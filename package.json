@@ -37,7 +37,6 @@
     "url": "http://github.com/zeekay/referential"
   },
   "dependencies": {
-    "coffee-script": "1.12.4",
     "extend": "3.0.0",
     "is-array": "1.0.1",
     "is-number": "3.0.0",
@@ -45,6 +44,7 @@
     "is-string": "1.0.4"
   },
   "devDependencies": {
+    "coffee-script": "1.12.4",
     "cake-publish": "0.1.5",
     "cake-test": "0.1.0",
     "cake-version": "0.1.9",
@@ -65,6 +65,6 @@
     "rollup-plugin-commonjs": "7.0.0",
     "rollup-plugin-node-resolve": "2.0.0",
     "shortcake": "1.1.18",
-    "uglify-js": "2.7.3"
+    "uglify-js": "2.7.4"
   }
 }
