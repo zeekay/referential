@@ -148,6 +148,12 @@ describe 'Ref', ->
       ref.set b: {c: 5}
       ref.get().should.eql a: 2, b: {c: 5}
 
+      ref = new Ref
+        a:
+          count: 1
+
+      ref.set 'a.b.count', 2
+
     it 'should create tree as necessary', ->
       tree =
         a: 1

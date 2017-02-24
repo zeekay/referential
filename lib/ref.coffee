@@ -112,7 +112,7 @@ export default class Ref
         return obj[prop] = value
       else
         next = props[0]
-        unless obj[next]?
+        unless obj[prop]?
           if isNumber next
             obj[prop] ?= []
           else
