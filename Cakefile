@@ -44,7 +44,8 @@ task 'build', 'build project', ->
 
   # Generate code for node.js and bundlers
   bundle = yield rollup.rollup
-    entry:   'lib/index.coffee'
+    entry:    'lib/index.coffee'
+    cache:    bundle
     external: external
     plugins:  plugins
 
