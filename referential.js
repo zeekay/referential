@@ -376,7 +376,7 @@ var Ref$1 = Ref = (function() {
         return obj[prop] = value;
       } else {
         next = props[0];
-        if (obj[next] == null) {
+        if (obj[prop] == null) {
           if (index$1(next)) {
             if (obj[prop] == null) {
               obj[prop] = [];
