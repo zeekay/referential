@@ -33,11 +33,11 @@ task 'build', 'build project', ->
 
   bundle.write
     format: 'es'
-    dest:   'lib/es.mjs'
+    dest:   'lib/index.mjs'
 
   bundle.write
     format: 'cjs'
-    dest:   'lib/cjs.js'
+    dest:   'lib/index.js'
 
   yield bundle.write
     format: 'iife'
