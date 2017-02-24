@@ -4,8 +4,10 @@ use 'cake-test'
 use 'cake-publish'
 use 'cake-version'
 
-fs        = require 'fs'
-requisite = require 'requisite'
+rollup      = require 'rollup'
+commonjs    = require 'rollup-plugin-commonjs'
+coffee      = require 'rollup-plugin-coffee-script'
+nodeResolve = require 'rollup-plugin-node-resolve'
 
 option '-b', '--browser [browser]', 'browser to use for tests'
 option '-g', '--grep [filter]',     'test filter'
@@ -15,23 +17,34 @@ option '-v', '--verbose',           'enable verbose test logging'
 task 'clean', 'clean project', ->
   exec 'rm -rf lib'
 
-task 'build', 'build project', (cb) ->
-  todo = 2
-  done = (err) ->
-    throw err if err?
-    cb() if --todo is 0
+task 'build', 'build project', ->
+  bundle = yield rollup.rollup
+    entry: 'src/index.coffee',
+    plugins: [
+      coffee()
+      nodeResolve
+        browser: true
+        extensions: ['.js', '.coffee']
+        module:  true
+      commonjs
+        extensions: ['.js', '.coffee']
+        sourceMap: true
+    ]
 
-  exec 'coffee -bcm -o lib/ src/', done
+  bundle.write
+    format: 'es'
+    dest:   'lib/es.mjs'
 
-  opts =
-    entry:      'src/browser.coffee'
-    stripDebug: true
+  bundle.write
+    format: 'cjs'
+    dest:   'lib/cjs.js'
 
-  requisite.bundle opts, (err, bundle) ->
-    return done err if err?
-    fs.writeFile 'referential.js', (bundle.toString opts), 'utf8', done
+  yield bundle.write
+    format: 'iife'
+    dest:   'referential.js'
+    moduleName: 'Referential'
 
-task 'build-min', 'build project', ['build'], ->
+task 'build:min', 'build project', ['build'], ->
   exec 'uglifyjs referential.js --compress --mangle --lint=false > referential.min.js'
 
 task 'watch', 'watch for changes and recompile project', ->

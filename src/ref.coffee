@@ -1,14 +1,14 @@
-extend   = require 'node.extend'
-isArray  = require 'is-array'
-isNumber = require 'is-number'
-isObject = require 'is-object'
-isString = require 'is-string'
+import extend   from 'extend'
+import isArray  from 'is-array'
+import isNumber from 'is-number'
+import isObject from 'is-object'
+import isString from 'is-string'
 
 nextId = do ->
   ids = 0
   -> ids++
 
-module.exports = class Ref
+export default class Ref
   constructor: (@_value, @parent, @key) ->
     @_cache    = {}
     @_children = {}
