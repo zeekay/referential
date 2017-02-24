@@ -16,8 +16,8 @@
     "store",
     "tree"
   ],
-  "main": "lib/cjs.js",
-  "module": "lib/es.js",
+  "main": "lib",
+  "module": "lib/index.mjs",
   "engines": {
     "node": ">=4.0.0"
   },
