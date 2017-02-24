@@ -60,7 +60,7 @@ task 'build', 'build project', ->
     sourceMap:  'inline'
 
 task 'build:min', 'build project', ['build'], ->
-  exec 'uglifyjs dist/referential.js --compress --mangle --lint=false > referential.min.js'
+  exec 'uglifyjs referential.js --compress --mangle --lint=false > referential.min.js'
 
 task 'watch', 'watch for changes and recompile project', ->
   exec 'coffee -bcmw -o lib/ src/'
