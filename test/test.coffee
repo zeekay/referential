@@ -1,6 +1,6 @@
 require './helper'
 
-refer = require '../src'
+refer = require '../lib'
 Ref   = refer.Ref
 
 describe 'refer', ->
@@ -214,8 +214,3 @@ describe 'Ref', ->
       r.value().should.eql tree
       r.value tree
       r.value().should.eql tree
-
-describe 'browser', ->
-  it 'should expose window.Referential', ->
-    require '../src/browser'
-    Referential.should.exist
