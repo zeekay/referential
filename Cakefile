@@ -19,7 +19,6 @@ task 'clean', 'clean project', ->
 
 task 'build', 'build project', ->
   pkg      = require './package'
-  external = Object.keys pkg.dependencies
 
   plugins = [
     coffee()
@@ -45,20 +44,19 @@ task 'build', 'build project', ->
   # Generate code for node.js and bundlers
   bundle = yield rollup.rollup
     entry:    'lib/index.coffee'
-    cache:    bundle
-    external: external
+    external: Object.keys pkg.dependencies
     plugins:  plugins
-
-  bundle.write
-    dest:      pkg.module
-    format:    'es'
-    sourceMap: 'inline'
 
   bundle.write
     dest:       pkg.main
     format:     'umd'
     moduleName: 'referential'
     sourceMap:  'inline'
+
+  bundle.write
+    dest:      pkg.module
+    format:    'es'
+    sourceMap: 'inline'
 
 task 'build:min', 'build project', ['build'], ->
   exec 'uglifyjs referential.js --compress --mangle --lint=false > referential.min.js'
