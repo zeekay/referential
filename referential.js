@@ -1,5 +1,8 @@
-var Referential = (function () {
-'use strict';
+(function (global, factory) {
+	typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
+	typeof define === 'function' && define.amd ? define(factory) :
+	(global.Referential = factory());
+}(this, (function () { 'use strict';
 
 var hasOwn = Object.prototype.hasOwnProperty;
 var toStr = Object.prototype.toString;
@@ -86,10 +89,6 @@ var index = function extend() {
 };
 
 /**
- * isArray
- */
-
-/**
  * Determine if an object is Buffer
  *
  * Author:   Feross Aboukhadijeh <feross@feross.org> <http://feross.org>
@@ -98,7 +97,7 @@ var index = function extend() {
  * `npm install is-buffer`
  */
 
-var index$6 = function (obj) {
+var index$4 = function (obj) {
   return !!(obj != null &&
     (obj._isBuffer || // For Safari 5-7 (missing Object.prototype.constructor)
       (obj.constructor &&
@@ -107,7 +106,7 @@ var index$6 = function (obj) {
     ))
 };
 
-var isBuffer = index$6;
+var isBuffer = index$4;
 var toString = Object.prototype.toString;
 
 /**
@@ -117,7 +116,7 @@ var toString = Object.prototype.toString;
  * @return {*} Native javascript type
  */
 
-var index$4 = function kindOf(val) {
+var index$2 = function kindOf(val) {
   // primitivies
   if (typeof val === 'undefined') {
     return 'undefined';
@@ -221,9 +220,9 @@ var index$4 = function kindOf(val) {
   return 'object';
 };
 
-var typeOf = index$4;
+var typeOf = index$2;
 
-var index$3 = function isNumber(num) {
+var index$1 = function isNumber(num) {
   var type = typeOf(num);
 
   if (type === 'string') {
@@ -235,7 +234,7 @@ var index$3 = function isNumber(num) {
   return (num - num + 1) >= 0;
 };
 
-var index$8 = function isObject(x) {
+var index$6 = function isObject(x) {
 	return typeof x === "object" && x !== null;
 };
 
@@ -336,7 +335,7 @@ var Ref$1 = Ref = (function() {
     if (value == null) {
       this.value(index(true, this.value(), key));
     } else {
-      if (index$8(value)) {
+      if (index$6(value)) {
         this.value(index(true, (this.ref(key)).get(), value));
       } else {
         clone = this.clone();
@@ -359,7 +358,7 @@ var Ref$1 = Ref = (function() {
     if (this.parent) {
       return this.parent.index(this.key + '.' + key, value);
     }
-    if (index$3(key)) {
+    if (index$1(key)) {
       key = String(key);
     }
     props = key.split('.');
@@ -378,7 +377,7 @@ var Ref$1 = Ref = (function() {
       } else {
         next = props[0];
         if (obj[next] == null) {
-          if (index$3(next)) {
+          if (index$1(next)) {
             if (obj[prop] == null) {
               obj[prop] = [];
             }
@@ -435,4 +434,4 @@ var refer$1 = refer;
 
 return refer$1;
 
-}());
+})));

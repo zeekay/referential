@@ -1,6 +1,6 @@
 require './helper'
 
-refer = require '../lib'
+refer = require '../'
 Ref   = refer.Ref
 
 describe 'refer', ->
