@@ -1,8 +1,6 @@
 import extend   from 'extend'
-import isArray  from 'is-array'
 import isNumber from 'is-number'
 import isObject from 'is-object'
-import isString from 'is-string'
 
 nextId = do ->
   ids = 0

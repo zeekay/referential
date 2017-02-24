@@ -16,8 +16,13 @@
     "store",
     "tree"
   ],
-  "main": "lib",
-  "module": "lib/index.mjs",
+  "main": "dist/referential.js",
+  "module": "dist/referential.mjs",
+  "jsnext:main": "dist/referential.mjs",
+  "files": [
+    "lib",
+    "dist"
+  ],
   "engines": {
     "node": ">=4.0.0"
   },
