@@ -4,10 +4,12 @@ use 'cake-test'
 use 'cake-publish'
 use 'cake-version'
 
-rollup      = require 'rollup'
-commonjs    = require 'rollup-plugin-commonjs'
 coffee      = require 'rollup-plugin-coffee-script'
+commonjs    = require 'rollup-plugin-commonjs'
 nodeResolve = require 'rollup-plugin-node-resolve'
+rollup      = require 'rollup'
+
+pkg         = require './package'
 
 option '-b', '--browser [browser]', 'browser to use for tests'
 option '-g', '--grep [filter]',     'test filter'
@@ -15,11 +17,9 @@ option '-t', '--test [test]',       'specify test to run'
 option '-v', '--verbose',           'enable verbose test logging'
 
 task 'clean', 'clean project', ->
-  exec 'rm -rf lib'
+  exec 'rm -rf dist'
 
 task 'build', 'build project', ->
-  pkg      = require './package'
-
   plugins = [
     coffee()
     nodeResolve
@@ -31,7 +31,7 @@ task 'build', 'build project', ->
       sourceMap: true
   ]
 
-  # Generate code for browser
+  # Browser (single file)
   bundle = yield rollup.rollup
     entry:   'lib/index.coffee'
     plugins:  plugins
@@ -41,18 +41,19 @@ task 'build', 'build project', ->
     format:     'umd'
     moduleName: 'Referential'
 
-  # Generate code for node.js and bundlers
   bundle = yield rollup.rollup
     entry:    'lib/index.coffee'
     external: Object.keys pkg.dependencies
     plugins:  plugins
 
+  # CommonJS
   bundle.write
     dest:       pkg.main
     format:     'umd'
     moduleName: 'referential'
     sourceMap:  'inline'
 
+  # ES module bundle
   bundle.write
     dest:      pkg.module
     format:    'es'
@@ -60,6 +61,3 @@ task 'build', 'build project', ->
 
 task 'build:min', 'build project', ['build'], ->
   exec 'uglifyjs referential.js --compress --mangle --lint=false > referential.min.js'
-
-task 'watch', 'watch for changes and recompile project', ->
-  exec 'coffee -bcmw -o lib/ src/'
