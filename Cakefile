@@ -33,27 +33,26 @@ task 'build', 'build project', ->
 
   # Browser (single file)
   bundle = yield rollup.rollup
-    entry:   'lib/index.coffee'
+    entry:   'src/index.coffee'
     plugins:  plugins
 
   yield bundle.write
     dest:       'referential.js'
-    format:     'umd'
+    format:     'iife'
     moduleName: 'Referential'
 
+  # CommonJS && ES Module
   bundle = yield rollup.rollup
-    entry:    'lib/index.coffee'
+    entry:    'src/index.coffee'
     external: Object.keys pkg.dependencies
     plugins:  plugins
 
-  # CommonJS
   bundle.write
     dest:       pkg.main
-    format:     'umd'
+    format:     'cjs'
     moduleName: 'referential'
     sourceMap:  'inline'
 
-  # ES module bundle
   bundle.write
     dest:      pkg.module
     format:    'es'

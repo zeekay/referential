@@ -1,8 +1,5 @@
-(function (global, factory) {
-	typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
-	typeof define === 'function' && define.amd ? define(factory) :
-	(global.Referential = factory());
-}(this, (function () { 'use strict';
+var Referential = (function () {
+'use strict';
 
 var hasOwn = Object.prototype.hasOwnProperty;
 var toStr = Object.prototype.toString;
@@ -434,4 +431,4 @@ var refer$1 = refer;
 
 return refer$1;
 
-})));
+}());
