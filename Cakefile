@@ -12,13 +12,11 @@ task 'build', 'build project', ->
 
   # Browser (single file)
   bundle = yield handroll.bundle
-    entry:    'src/index.coffee'
-    commonjs: true
+    entry:     'src/index.coffee'
+    commonjs:  true
+    sourceMap: false
 
-  yield bundle.write
-    dest:       'referential.js'
-    format:     'iife'
-    moduleName: 'Referential'
+  yield bundle.write format: 'web'
 
   # CommonJS && ES Module
   bundle = yield handroll.bundle
