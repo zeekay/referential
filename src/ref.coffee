@@ -1,6 +1,5 @@
-import isNumber     from 'is-number'
-import isObject     from 'is-object'
-import objectAssign from 'es-object-assign'
+import objectAssign         from 'es-object-assign'
+import {isNumber, isObject} from 'es-is'
 
 nextId = do ->
   ids = 0
@@ -113,9 +112,9 @@ export default class Ref
       else
         next = props[0]
         unless obj[prop]?
-          if isNumber next
-            obj[prop] ?= []
-          else
+          if isNaN Number next
             obj[prop] ?= {}
+          else
+            obj[prop] ?= []
       obj = obj[prop]
     return
