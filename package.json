@@ -42,7 +42,7 @@
     "url": "http://github.com/zeekay/referential"
   },
   "dependencies": {
-    "extend": "3.0.0",
+    "es-object-assign": "4.1.2",
     "is-array": "1.0.1",
     "is-number": "3.0.0",
     "is-object": "^1.0.1",

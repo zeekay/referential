@@ -1,6 +1,6 @@
-import extend   from 'extend'
-import isNumber from 'is-number'
-import isObject from 'is-object'
+import isNumber     from 'is-number'
+import isObject     from 'is-object'
+import objectAssign from 'es-object-assign'
 
 nextId = do ->
   ids = 0
@@ -65,7 +65,7 @@ export default class Ref
     @_mutate key
 
     unless value?
-      @value extend @value(), key
+      @value objectAssign @value(), key
     else
       @index key, value
     @
@@ -75,18 +75,18 @@ export default class Ref
     @_mutate key
 
     unless value?
-      @value extend true, @value(), key
+      @value objectAssign @value(), key
     else
       if isObject value
-        @value extend true, (@ref key).get(), value
+        @value objectAssign (@ref key).get(), value
       else
         clone = @clone()
         @set key, value
-        @value extend true, clone.get(), @value()
+        @value objectAssign clone.get(), @value()
     @
 
   clone: (key) ->
-    new Ref extend true, {}, @get key
+    new Ref objectAssign {}, @get key
 
   # Walk tree using key, optionally update value
   index: (key, value, obj=@value(), prev) ->
