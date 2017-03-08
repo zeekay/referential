@@ -1,5 +1,6 @@
 import objectAssign         from 'es-object-assign'
 import {isNumber, isObject} from 'es-is'
+import observable           from 'riot-observable'
 
 nextId = do ->
   ids = 0
@@ -12,6 +13,7 @@ export default class Ref
     @_id       = nextId()
 
     @parent._children[@_id] = @ if @parent?
+    observable @
     @
 
   # Clear the cache
@@ -61,13 +63,31 @@ export default class Ref
 
   # Set value overwriting tree along way
   set: (key, value) ->
+    # handle case of object
+    if isObject key
+      for k, v of key
+        @set k, v
+
+      return @
+
+    oldValue = @get key
+
     @_mutate key
 
     unless value?
       @value objectAssign @value(), key
     else
       @index key, value
+
+    # set event
+    @_triggerSet key, value, oldValue
     @
+
+  _triggerSet: (key, value, oldValue) ->
+    @trigger 'set', key, value, oldValue
+    if @parent
+      parentKey = @key + '.' + key
+      @parent._triggerSet parentKey, value, oldValue
 
   # Deep set some value
   extend: (key, value) ->
