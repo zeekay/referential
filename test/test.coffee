@@ -220,3 +220,47 @@ describe 'Ref', ->
       r.value().should.eql tree
       r.value tree
       r.value().should.eql tree
+
+  describe 'observable sanity check', ->
+    it 'should bind events', ->
+      tree =
+        a: 1
+        b:
+          c: 2
+
+      r = new Ref clone tree
+
+      z = 0
+      r.on 'set', (k, x, y) ->
+        if k == 'a'
+          x.should.eql 2
+          y.should.eql 1
+          z++
+
+      r.on 'set', (k, x, y) ->
+        if k == 'b.c'
+          if z == 1
+            x.should.eql 3
+            y.should.eql 2
+          else if z == 3
+            x.should.eql 4
+            y.should.eql 3
+          z++
+
+
+      # basic cases
+      r.set 'a', 2
+      r.set 'b.c', 3
+
+      # ref case
+      r2 = r.ref 'b'
+
+      r2.on 'set', (k, x, y) ->
+        if k == 'c'
+          x.should.eql 4
+          y.should.eql 3
+          z++
+
+      r2.set 'c', 4
+
+      z.should.eql 4
