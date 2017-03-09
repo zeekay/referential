@@ -500,10 +500,13 @@ var Ref$1 = Ref = (function() {
 })();
 
 // src/index.coffee
+var methods;
 var refer;
 
+methods = ['extend', 'get', 'index', 'ref', 'set', 'value', 'on', 'off', 'one', 'trigger'];
+
 refer = function(state, ref) {
-  var fn, i, len, method, ref1, wrapper;
+  var fn, i, len, method, wrapper;
   if (ref == null) {
     ref = null;
   }
@@ -513,14 +516,13 @@ refer = function(state, ref) {
   wrapper = function(key) {
     return ref.get(key);
   };
-  ref1 = ['value', 'get', 'set', 'extend', 'index', 'ref'];
   fn = function(method) {
     return wrapper[method] = function() {
       return ref[method].apply(ref, arguments);
     };
   };
-  for (i = 0, len = ref1.length; i < len; i++) {
-    method = ref1[i];
+  for (i = 0, len = methods.length; i < len; i++) {
+    method = methods[i];
     fn(method);
   }
   wrapper.refer = function(key) {
