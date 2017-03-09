@@ -1,11 +1,25 @@
 import Ref from './ref'
 
+methods = [
+  'extend'
+  'get'
+  'index'
+  'ref'
+  'set'
+  'value'
+
+  'on'
+  'off'
+  'one'
+  'trigger'
+]
+
 refer = (state, ref=null) ->
   ref ?= new Ref state
 
   wrapper = (key) -> ref.get key
 
-  for method in ['value', 'get', 'set', 'extend', 'index', 'ref']
+  for method in methods
     do (method) ->
       wrapper[method] = ->
         ref[method].apply ref, arguments
