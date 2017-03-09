@@ -1,6 +1,7 @@
 var Referential = (function () {
 'use strict';
 
+// node_modules/es-object-assign/index.mjs
 var getOwnPropertySymbols;
 var hasOwnProperty;
 var objectAssign;
@@ -89,6 +90,7 @@ var index = objectAssign = (function() {
   };
 })();
 
+// node_modules/es-is/dist/index.mjs
 var isActualNaN;
 var isArgs;
 var isFn;
@@ -193,6 +195,7 @@ var isObject = function(value) {
   return toStr.call(value) === '[object Object]';
 };
 
+// node_modules/riot-observable/dist/es6.observable.js
 var observable = function(el) {
 
   /**
@@ -317,6 +320,7 @@ var observable = function(el) {
 
 };
 
+// src/ref.coffee
 var Ref;
 var nextId;
 
@@ -495,6 +499,7 @@ var Ref$1 = Ref = (function() {
 
 })();
 
+// src/index.coffee
 var refer;
 
 refer = function(state, ref) {
