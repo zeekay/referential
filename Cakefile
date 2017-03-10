@@ -13,7 +13,6 @@ task 'build', 'build project', ->
   # Browser (single file)
   bundle = yield handroll.bundle
     entry:     'src/index.coffee'
-    commonjs:  true
     minify:    true
     sourceMap: false
 
@@ -23,7 +22,6 @@ task 'build', 'build project', ->
   bundle = yield handroll.bundle
     entry:    'src/index.coffee'
     external: true
-    commonjs: true
 
   yield bundle.write format: 'cjs'
   yield bundle.write format: 'es'
