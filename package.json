@@ -27,7 +27,7 @@
     "node": ">=4.0.0"
   },
   "scripts": {
-    "prepublish": "cake build:min",
+    "prepublish": "cake build",
     "test": "cake build && cake test"
   },
   "licenses": [
@@ -58,14 +58,10 @@
     "coffee-script": "1.12.4",
     "coveralls": "2.11.14",
     "es5-shim": "4.5.9",
+    "handroll": "0.7.1",
     "istanbul": "0.4.5",
     "mocha": "3.2.0",
     "postmortem": "^0.2.4",
-    "rollup": "0.41.4",
-    "rollup-plugin-coffee-script": "1.1.0",
-    "rollup-plugin-commonjs": "7.0.0",
-    "rollup-plugin-node-resolve": "2.0.0",
-    "shortcake": "1.2.5",
-    "uglify-js": "2.8.7"
+    "shortcake": "1.2.5"
   }
 }

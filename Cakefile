@@ -14,6 +14,7 @@ task 'build', 'build project', ->
   bundle = yield handroll.bundle
     entry:     'src/index.coffee'
     commonjs:  true
+    minify:    true
     sourceMap: false
 
   yield bundle.write format: 'web'
@@ -26,6 +27,3 @@ task 'build', 'build project', ->
 
   yield bundle.write format: 'cjs'
   yield bundle.write format: 'es'
-
-task 'build:min', 'build project', ['build'], ->
-  exec 'uglifyjs referential.js --compress --mangle --lint=false > referential.min.js'
