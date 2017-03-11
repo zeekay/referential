@@ -43,6 +43,7 @@
   "dependencies": {
     "es-is": "3.2.1",
     "es-object-assign": "4.1.3",
+    "handroll": "0.7.2",
     "riot-observable": "3.0.0"
   },
   "devDependencies": {
