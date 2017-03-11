@@ -10,9 +10,12 @@ export default class Ref
   constructor: (@_value, @parent, @key) ->
     @_cache    = {}
     @_children = {}
+    @_numChildren = 0
     @_id       = nextId()
 
-    @parent._children[@_id] = @ if @parent?
+    if @parent?
+      @parent._children[@_id] = @
+      @parent._numChildren++
     observable @
     @
 
@@ -31,7 +34,11 @@ export default class Ref
     child.destroy() for id, child of @_children
     delete @_cache
     delete @_children
-    delete @parent._children[@_id]
+    @off '*'
+
+    if @parent
+      delete @parent._children[@_id]
+      @parent._numChildren--
     @
 
   # Get value of this or parent Ref
@@ -81,7 +88,31 @@ export default class Ref
 
     # set event
     @_triggerSet key, value, oldValue
+    @_triggerSetChildren key, value, oldValue
     @
+
+  _triggerSetChildren: (key, value, oldValue) ->
+    return @ if @_numChildren == 0
+    key = key + ''
+    keyParts = key.split '.'
+    partialKey = ''
+    childKeys = []
+    regExps = {}
+
+    for i, keyPart of keyParts
+      if partialKey == ''
+        partialKey = keyPart
+      else
+        partialKey += '.' + keyPart
+      childKeys[i] = partialKey
+
+      regExps[partialKey] = new RegExp '^' + partialKey + '\.?'
+
+    for id, child of @_children
+      if child.key in childKeys
+        childRemainderKey = key.replace regExps[child.key], ''
+        child.trigger 'set', childRemainderKey, value, oldValue
+        child._triggerSetChildren childRemainderKey, value, oldValue
 
   _triggerSet: (key, value, oldValue) ->
     @trigger 'set', key, value, oldValue
