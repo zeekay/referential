@@ -6,9 +6,9 @@ env:
 language: node_js
 node_js:
   - 4
-  - 5
+  - 7
 script:
-  - node_modules/.bin/shortcake test:ci
+  - node_modules/.bin/shortcake test
 cache:
   directories:
   - node_modules
@@ -20,5 +20,5 @@ notifications:
     secure: PEV/DCajyUMO8EeH/3CYeIkeZhTRITdjmWGs6ZziNpJgEGepH/BdH6SCPWwnTprpF9/MEovdLmsvtaT6auJkNGpoRPHRSb+EU2Bt9nvtCPmgZv16gess2bS0Ceq9K+YmFesoagU8DzLl8rEMw0OQrMWWsV/B0plhK1QnjlPkQKg=
 before_install:
   - export TRAVIS_COMMIT_MSG="$(git log --format=%B --no-merges -n 1)"
-after_success:
-  - node_modules/.bin/shortcake coverage:process
+# after_success:
+#   - node_modules/.bin/shortcake coverage:process
