@@ -230,6 +230,9 @@ describe 'Ref', ->
 
       r = new Ref clone tree
 
+      # ref
+      r2 = r.ref 'b'
+
       z = 0
       r.on 'set', (k, x, y) ->
         if k == 'a'
@@ -240,27 +243,67 @@ describe 'Ref', ->
       r.on 'set', (k, x, y) ->
         if k == 'b.c'
           if z == 1
+            console.log 'z=1', k, x, y
             x.should.eql 3
             y.should.eql 2
-          else if z == 3
+            z++
+          else if z == 4
+            console.log 'z=3', k, x, y
             x.should.eql 4
             y.should.eql 3
-          z++
+            z++
+        console.log 'k == b.c', k, x, y
 
+      r2.on 'set', (k, x, y) ->
+        if k == 'c'
+          if z == 2
+            console.log 'z=2', k, x, y
+            x.should.eql 3
+            y.should.eql 2
+            z++
+          else if z == 3
+            console.log 'z=4', k, x, y
+            x.should.eql 4
+            y.should.eql 3
+            z++
+        console.log 'k == c', k, x, y
 
       # basic cases
       r.set 'a', 2
       r.set 'b.c', 3
 
-      # ref case
-      r2 = r.ref 'b'
-
-      r2.on 'set', (k, x, y) ->
-        if k == 'c'
-          x.should.eql 4
-          y.should.eql 3
-          z++
-
+      # ref cases
       r2.set 'c', 4
 
-      z.should.eql 4
+      z.should.eql 5
+
+    it 'events should fire for deeply nested refs', ->
+      tree =
+        a:
+          b:
+            c:
+              d: 1
+
+      r = new Ref clone tree
+
+      # ref
+      r2 = r.ref 'a.b.c'
+
+      z = 0
+      r.on 'set', (k, x, y) ->
+        if k == 'a.b.c.d'
+          if z == 0
+            x.should.eql 2
+            y.should.eql 1
+            z++
+
+      r2.on 'set', (k, x, y) ->
+        if k == 'd'
+          if z == 1
+            x.should.eql 2
+            y.should.eql 1
+            z++
+
+      r.set 'a.b.c.d', 2
+
+      z.should.eql 2
