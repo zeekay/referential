@@ -276,3 +276,34 @@ describe 'Ref', ->
       r2.set 'c', 4
 
       z.should.eql 5
+
+    it 'events should fire for deeply nested refs', ->
+      tree =
+        a:
+          b:
+            c:
+              d: 1
+
+      r = new Ref clone tree
+
+      # ref
+      r2 = r.ref 'a.b.c'
+
+      z = 0
+      r.on 'set', (k, x, y) ->
+        if k == 'a.b.c.d'
+          if z == 0
+            x.should.eql 2
+            y.should.eql 1
+            z++
+
+      r2.on 'set', (k, x, y) ->
+        if k == 'd'
+          if z == 1
+            x.should.eql 2
+            y.should.eql 1
+            z++
+
+      r.set 'a.b.c.d', 2
+
+      z.should.eql 2
