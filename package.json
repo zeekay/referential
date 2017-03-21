@@ -29,12 +29,6 @@
     "prepublishOnly": "cake build",
     "test": "cake build && cake test"
   },
-  "licenses": [
-    {
-      "type": "MIT",
-      "url": "https://github.com/zeekay/referential/blob/master/LICENSE"
-    }
-  ],
   "license": "MIT",
   "repository": {
     "type": "git",
