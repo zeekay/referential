@@ -3,8 +3,9 @@
   "version": "0.5.15",
   "description": "Mutable state container for sharing data safely in a functional or reactive programming style.",
   "author": "Zach Kelling <z@zeekay.io>",
-  "homepage": "http://github.com/zeekay/referential",
   "bugs": "http://github.com/zeekay/referential/issues",
+  "homepage": "http://github.com/zeekay/referential",
+  "repository": "github:zeekay/referential",
   "keywords": [
     "datastructure",
     "immutable",
@@ -21,20 +22,17 @@
   "module": "dist/referential.mjs",
   "jsnext:main": "dist/referential.mjs",
   "files": [
-    "dist"
+    "dist/",
+    "src/"
   ],
   "engines": {
     "node": ">=4.0.0"
   },
   "scripts": {
     "prepublishOnly": "cake build",
-    "test": "cake build && cake test"
+    "test": "cake test"
   },
   "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "http://github.com/zeekay/referential"
-  },
   "dependencies": {
     "es-is": "3.2.2",
     "es-object-assign": "4.1.3",
