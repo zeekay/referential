@@ -39,7 +39,7 @@
     "riot-observable": "3.0.0"
   },
   "devDependencies": {
-    "cake-bundle": "0.2.2",
+    "cake-bundle": "0.2.3",
     "cake-outdated": "0.1.13",
     "cake-publish": "0.1.5",
     "cake-test": "0.1.0",
