@@ -10,15 +10,19 @@ task 'clean', 'clean project', ->
   exec 'rm -rf dist'
 
 task 'build', 'build project', ->
+  b = bundle
+    entry: 'src/index.coffee'
+    compilers:
+      coffee:
+        version: 1
+
   # Browser (single file)
-  yield bundle.write
-    entry:     'src/index.coffee'
+  yield b.write
     format:    'web'
     external:  false
     minify:    true
     sourceMap: false
 
   # Library for Bundlers, Node
-  yield bundle.write
-    entry:   'src/index.coffee'
+  yield b.write
     formats: ['es', 'cjs']
