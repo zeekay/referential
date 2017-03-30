@@ -10,7 +10,7 @@ task 'clean', 'clean project', ->
   exec 'rm -rf dist'
 
 task 'build', 'build project', ->
-  b = bundle
+  b = yield bundle
     entry: 'src/index.coffee'
     compilers:
       coffee:
