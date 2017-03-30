@@ -18,11 +18,11 @@
     "store",
     "tree"
   ],
-  "main": "dist/referential.js",
-  "module": "dist/referential.mjs",
-  "jsnext:main": "dist/referential.mjs",
+  "main": "lib/referential.js",
+  "module": "lib/referential.mjs",
+  "jsnext:main": "lib/referential.mjs",
   "files": [
-    "dist/",
+    "lib/",
     "src/"
   ],
   "engines": {
