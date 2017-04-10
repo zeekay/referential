@@ -1,13 +1,16 @@
-require 'shortcake'
+use 'sake-bundle'
+use 'sake-outdated'
+use 'sake-publish'
+use 'sake-version'
 
-use 'cake-bundle'
-use 'cake-outdated'
-use 'cake-publish'
-use 'cake-test'
-use 'cake-version'
+use 'cake-test' # Deprecated
 
 task 'clean', 'clean project', ->
-  exec 'rm -rf dist'
+  exec '''
+  rm -rf lib
+  rm referential.js
+  rm referential.min.js
+  '''
 
 task 'build', 'build project', ->
   b = new Bundle
@@ -17,14 +20,16 @@ task 'build', 'build project', ->
         version: 1
 
   # Browser (single file)
-  yield b.write
-    format:    'web'
-    external:  false
-    sourceMap: false
-
-  # Library for Bundlers, Node
-  yield b.write
-    formats: ['es', 'cjs']
+  Promise.all [
+    b.write format: 'es'
+    b.write
+      format:   'cjs'
+      external: false
+    b.write
+      format:    'web'
+      external:  false
+      sourceMap: false
+  ]
 
 task 'build:min', 'build project', ->
   exec 'uglifyjs referential.js -o referential.min.js'
