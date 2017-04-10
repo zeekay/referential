@@ -1,6 +1,8 @@
-var Referential = (function (objectAssign,esIs,observable) {
+var Referential = (function (isNumber,isObject,objectAssign,observable) {
 'use strict';
 
+isNumber = 'default' in isNumber ? isNumber['default'] : isNumber;
+isObject = 'default' in isObject ? isObject['default'] : isObject;
 objectAssign = 'default' in objectAssign ? objectAssign['default'] : objectAssign;
 observable = 'default' in observable ? observable['default'] : observable;
 
@@ -96,7 +98,7 @@ var Ref$1 = Ref = (function() {
 
   Ref.prototype.set = function(key, value) {
     var k, oldValue, v;
-    if (esIs.isObject(key)) {
+    if (isObject(key)) {
       for (k in key) {
         v = key[k];
         this.set(k, v);
@@ -165,7 +167,7 @@ var Ref$1 = Ref = (function() {
     if (value == null) {
       this.value(objectAssign(this.value(), key));
     } else {
-      if (esIs.isObject(value)) {
+      if (isObject(value)) {
         this.value(objectAssign((this.ref(key)).get(), value));
       } else {
         clone = this.clone();
@@ -188,7 +190,7 @@ var Ref$1 = Ref = (function() {
     if (this.parent) {
       return this.parent.index(this.key + '.' + key, value);
     }
-    if (esIs.isNumber(key)) {
+    if (isNumber(key)) {
       key = String(key);
     }
     props = key.split('.');
@@ -267,4 +269,4 @@ var refer$1 = refer;
 
 return refer$1;
 
-}(objectAssign,esIs,observable));
+}(isNumber,isObject,objectAssign,observable));

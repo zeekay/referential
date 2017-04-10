@@ -10,7 +10,7 @@ task 'clean', 'clean project', ->
   exec 'rm -rf dist'
 
 task 'build', 'build project', ->
-  b = yield bundle
+  b = new Bundle
     entry: 'src/index.coffee'
     compilers:
       coffee:
@@ -20,9 +20,11 @@ task 'build', 'build project', ->
   yield b.write
     format:    'web'
     external:  false
-    minify:    true
     sourceMap: false
 
   # Library for Bundlers, Node
   yield b.write
     formats: ['es', 'cjs']
+
+task 'build:min', 'build project', ->
+  exec 'uglifyjs referential.js -o referential.min.js'
