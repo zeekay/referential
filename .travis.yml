@@ -20,7 +20,7 @@ install:
   - yarn install
   - cake build
 script:
-- node_modules/.bin/shortcake test
+- node_modules/.bin/sake test
 # after_success:
 # - node_modules/.bin/shortcake coverage
 notifications:
