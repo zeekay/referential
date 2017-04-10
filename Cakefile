@@ -1,4 +1,5 @@
 use 'sake-bundle'
+use 'sake-chai'
 use 'sake-mocha'
 use 'sake-outdated'
 use 'sake-publish'
