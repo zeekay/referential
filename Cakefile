@@ -1,9 +1,8 @@
 use 'sake-bundle'
+use 'sake-mocha'
 use 'sake-outdated'
 use 'sake-publish'
 use 'sake-version'
-
-use 'cake-test' # Deprecated
 
 task 'clean', 'clean project', ->
   exec '''
