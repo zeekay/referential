@@ -29,7 +29,9 @@
     "node": ">=4.0.0"
   },
   "scripts": {
+    "build": "sake build",
     "prepublishOnly": "sake build",
+    "pretest": "sake build",
     "test": "sake test"
   },
   "license": "MIT",
