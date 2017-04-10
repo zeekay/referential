@@ -1,5 +1,14 @@
-# referential [![NPM version][npm-img]][npm-url] [![Build Status][travis-img]][travis-url] [![Coverage Status][coveralls-img]][coveralls-url] [![Dependency Status][dependency-img]][dependency-url] [![Gitter chat][gitter-img]][gitter-url]
-#### Refer to mutable state safely.
+# referential
+
+[![npm][npm-img]][npm-url]
+[![build][build-img]][build-url]
+[![dependencies][dependencies-img]][dependencies-url]
+[![downloads][downloads-img]][downloads-url]
+[![license][license-img]][license-url]
+[![chat][chat-img]][chat-url]
+
+> Refer to mutable state safely.
+
 Referential makes it easy to share mutable state safely. A `Ref` to an object
 or subtree always refers to the same underlying data regardless how it's
 mutated.
@@ -71,21 +80,22 @@ ref2() // {f: 6, g: 5}
 
 Check the tests for [more examples][examples].
 
+## License
+[MIT][license-url]
+
 [examples]:         https://github.com/zeekay/referential/blob/master/test/test.coffee
 
-[travis-img]:     https://img.shields.io/travis/zeekay/referential.svg
-[travis-url]:     https://travis-ci.org/zeekay/referential
-[coveralls-img]:  https://coveralls.io/repos/zeekay/referential/badge.svg?branch=master&service=github
-[coveralls-url]:  https://coveralls.io/github/zeekay/referential?branch=master
-[dependency-url]: https://david-dm.org/zeekay/referential
-[dependency-img]: https://david-dm.org/zeekay/referential.svg
-[npm-img]:        https://img.shields.io/npm/v/referential.svg
-[npm-url]:        https://www.npmjs.com/package/referential
-[gitter-img]:     https://badges.gitter.im/join-chat.svg
-[gitter-url]:     https://gitter.im/zeekay/hi
-
-<!-- not used -->
-[downloads-img]:     https://img.shields.io/npm/dm/referential.svg
-[downloads-url]:     http://badge.fury.io/js/referential
-[devdependency-img]: https://david-dm.org/zeekay/referential/dev-status.svg
-[devdependency-url]: https://david-dm.org/zeekay/referential#info=devDependencies
+[build-img]:        https://img.shields.io/travis/zeekay/referential.svg
+[build-url]:        https://travis-ci.org/zeekay/referential
+[chat-img]:         https://badges.gitter.im/join-chat.svg
+[chat-url]:         https://gitter.im/zeekay/hi
+[coverage-img]:     https://coveralls.io/repos/zeekay/referential/badge.svg?branch=master&service=github
+[coverage-url]:     https://coveralls.io/github/zeekay/referential?branch=master
+[dependencies-img]: https://david-dm.org/zeekay/referential.svg
+[dependencies-url]: https://david-dm.org/zeekay/referential
+[downloads-img]:    https://img.shields.io/npm/dm/referential.svg
+[downloads-url]:    http://badge.fury.io/js/referential
+[license-img]:      https://img.shields.io/npm/l/referential.svg
+[license-url]:      https://github.com/zeekay/referential/blob/master/LICENSE
+[npm-img]:          https://img.shields.io/npm/v/referential.svg
+[npm-url]:          https://www.npmjs.com/package/referential
