@@ -1,6 +1,7 @@
-import objectAssign         from 'es-object-assign'
-import {isNumber, isObject} from 'es-is'
-import observable           from 'riot-observable'
+import isNumber     from 'es-is/number'
+import isObject     from 'es-is/object'
+import objectAssign from 'es-object-assign'
+import observable   from 'riot-observable'
 
 nextId = do ->
   ids = 0
