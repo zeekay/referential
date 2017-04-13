@@ -19,13 +19,15 @@ task 'build', 'build project', ->
       coffee:
         version: 1
 
-  # Browser (single file)
   Promise.all [
+    # ES module (for bundlers)
     b.write format: 'es'
+    # Node.js
     b.write
       format:   'cjs'
       external: false
       include: ['es-is']
+    # Browser (single file)
     b.write
       format:    'web'
       external:  false
