@@ -25,6 +25,7 @@ task 'build', 'build project', ->
     b.write
       format:   'cjs'
       external: false
+      include: ['es-is']
     b.write
       format:    'web'
       external:  false
