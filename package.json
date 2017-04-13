@@ -20,7 +20,6 @@
   ],
   "main": "lib/referential.js",
   "module": "lib/referential.mjs",
-  "jsnext:main": "lib/referential.mjs",
   "files": [
     "lib/",
     "src/"
