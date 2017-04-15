@@ -34,5 +34,5 @@ task 'build', 'build project', ->
       sourceMap: false
   ]
 
-task 'build:min', 'build project', ->
+task 'build:min', 'build project', ['build'], ->
   exec 'uglifyjs referential.js -o referential.min.js'
