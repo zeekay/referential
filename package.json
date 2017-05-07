@@ -41,12 +41,12 @@
   },
   "devDependencies": {
     "coffee-script": "1.12.5",
-    "sake-bundle": "^0.4.12",
-    "sake-chai": "^0.2.3",
-    "sake-cli": "^0.3.2",
-    "sake-mocha": "^0.1.6",
-    "sake-outdated": "^0.1.20",
-    "sake-publish": "^0.1.12",
-    "sake-version": "^0.1.18"
+    "sake-bundle": "^0.5.2",
+    "sake-chai": "^0.2.5",
+    "sake-cli": "^0.5.6",
+    "sake-mocha": "^0.1.7",
+    "sake-outdated": "^0.1.27",
+    "sake-publish": "^0.1.16",
+    "sake-version": "^0.1.19"
   }
 }
