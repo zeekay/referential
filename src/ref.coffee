@@ -31,7 +31,7 @@ export default class Ref
     @
 
   # Removes reference
-  destroy(removeEvents = false) ->
+  destroy: (removeEvents = false) ->
     child.destroy(removeEvents) for id, child of @_children
     delete @_cache
     delete @_children
