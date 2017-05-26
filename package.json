@@ -1,6 +1,6 @@
 {
   "name": "referential",
-  "version": "0.5.20",
+  "version": "0.5.21",
   "description": "Mutable state container for sharing data safely in a functional or reactive programming style.",
   "author": "Zach Kelling <z@zeekay.io>",
   "bugs": "http://github.com/zeekay/referential/issues",
