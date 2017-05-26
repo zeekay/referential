@@ -245,8 +245,6 @@ nextId = (function() {
 })();
 
 var Ref$1 = Ref = (function() {
-  var removeEvents;
-
   function Ref(_value, parent, key1) {
     this._value = _value;
     this.parent = parent;
@@ -274,8 +272,11 @@ var Ref$1 = Ref = (function() {
     return this;
   };
 
-  destroy(removeEvents = false)(function() {
+  Ref.prototype.destroy = function(removeEvents) {
     var child, id, ref;
+    if (removeEvents == null) {
+      removeEvents = false;
+    }
     ref = this._children;
     for (id in ref) {
       child = ref[id];
@@ -291,7 +292,7 @@ var Ref$1 = Ref = (function() {
       this.parent._numChildren--;
     }
     return this;
-  });
+  };
 
   Ref.prototype.value = function(state) {
     if (!this.parent) {
