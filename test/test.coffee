@@ -1,4 +1,5 @@
 require './helper'
+should = require('chai').should()
 
 refer = require '../'
 Ref   = refer.Ref
@@ -180,6 +181,20 @@ describe 'Ref', ->
         a: 1
         b: [42]
 
+    it 'should set null and undefined', ->
+      tree =
+        a: 1
+      ref = new Ref clone tree
+      ref.set 'a', undefined
+
+      should.not.exist ref.get('a')
+
+      ref.set 'a', null
+      should.not.exist ref.get('a')
+
+      ref.set 'a', 2
+      ref.get('a').should.equal 2
+
   describe '.extend', ->
     it 'should extend encapsulated values', ->
       tree =
@@ -208,6 +223,67 @@ describe 'Ref', ->
       r = new Ref clone tree
       r2 = r.ref('b')
       r2.get().should.eql c: 2
+
+  describe '.clear', ->
+    it 'should clear everything', ->
+      tree =
+        a: 1
+        b:
+          c: 2
+
+      r = new Ref clone tree
+      r2 = r.ref('b')
+      r.clear()
+
+      should.not.exist r.get()
+      should.not.exist r2.get()
+
+    it 'should be writeable after clear', ->
+      tree =
+        a: 1
+        b:
+          c: 2
+
+      r = new Ref clone tree
+      r2 = r.ref('b')
+      r.clear()
+
+      should.not.exist r.get()
+      should.not.exist r2.get()
+
+      r.set({b: {c: 2}})
+      r2.get().should.eql c: 2
+      r.get().should.eql {b: {c: 2}}
+
+    it 'should clear parent from ref', ->
+      tree =
+        a: 1
+        b:
+          c: 2
+
+      r = new Ref clone tree
+      r2 = r.ref('b')
+      r2.clear()
+      should.not.exist r2.get()
+      should.not.exist r.get('b')
+
+    it 'should be writeable after clear parent from ref', ->
+      tree =
+        a: 1
+        b:
+          c: 2
+
+      r = new Ref clone tree
+      r2 = r.ref('b')
+      r2.clear()
+
+      should.not.exist r2.get()
+      should.not.exist r.get('b')
+
+      r2.set({c: 2})
+      r2.get().should.eql c: 2
+      r.get('b').should.eql c: 2
+      r.get().should.eql tree
 
   describe '.value', ->
     it 'should get state and set state', ->
@@ -243,30 +319,30 @@ describe 'Ref', ->
       r.on 'set', (k, x, y) ->
         if k == 'b.c'
           if z == 1
-            console.log 'z=1', k, x, y
+            # console.log 'z=1', k, x, y
             x.should.eql 3
             y.should.eql 2
             z++
           else if z == 4
-            console.log 'z=3', k, x, y
+            # console.log 'z=3', k, x, y
             x.should.eql 4
             y.should.eql 3
             z++
-        console.log 'k == b.c', k, x, y
+        # console.log 'k == b.c', k, x, y
 
       r2.on 'set', (k, x, y) ->
         if k == 'c'
           if z == 2
-            console.log 'z=2', k, x, y
+            # console.log 'z=2', k, x, y
             x.should.eql 3
             y.should.eql 2
             z++
           else if z == 3
-            console.log 'z=4', k, x, y
+            # console.log 'z=4', k, x, y
             x.should.eql 4
             y.should.eql 3
             z++
-        console.log 'k == c', k, x, y
+        # console.log 'k == c', k, x, y
 
       # basic cases
       r.set 'a', 2
