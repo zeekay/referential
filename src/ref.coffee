@@ -31,11 +31,11 @@ export default class Ref
     @
 
   # Removes reference
-  destroy: ->
-    child.destroy() for id, child of @_children
+  destroy(removeEvents = false) ->
+    child.destroy(removeEvents) for id, child of @_children
     delete @_cache
     delete @_children
-    @off '*'
+    @off '*' if removeEvents
 
     if @parent
       delete @parent._children[@_id]
