@@ -7,6 +7,8 @@ methods = [
   'ref'
   'set'
   'value'
+  'clear'
+  'destroy'
 
   'on'
   'off'
