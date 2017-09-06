@@ -76,7 +76,13 @@ ref3 = ref2.clone()
 ref3.set('g', 6)
 ref3() // {f: 6, g: 6}
 ref2() // {f: 6, g: 5}
-```
+
+// Bind to update event, should print `x was set to 2 from 1`
+ref4 = refer({x: 1})
+ref4.on('set', function(name, newValue, oldValue) {
+    console.log(name + ' was set to ' + newValue + ' from ' + oldValue)
+})
+ref4.set('x', 2)
 
 Check the tests for [more examples][examples].
 
