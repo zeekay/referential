@@ -83,6 +83,7 @@ ref4.on('set', function(name, newValue, oldValue) {
     console.log(name + ' was set to ' + newValue + ' from ' + oldValue)
 })
 ref4.set('x', 2)
+```
 
 Check the tests for [more examples][examples].
 
