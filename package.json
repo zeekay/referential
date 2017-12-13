@@ -40,10 +40,10 @@
     "riot-observable": "3.0.0"
   },
   "devDependencies": {
-    "coffee-script": "1.12.6",
-    "sake-bundle": "^0.6.0",
+    "coffee-script": "1.12.7",
+    "sake-bundle": "^0.6.3",
     "sake-chai": "^0.2.5",
-    "sake-cli": "^0.5.6",
+    "sake-cli": "^0.5.23",
     "sake-mocha": "^0.1.7",
     "sake-outdated": "^0.1.28",
     "sake-publish": "^0.1.16",
