@@ -272,6 +272,22 @@ var Ref$1 = Ref = (function() {
     return this;
   };
 
+  Ref.prototype.clear = function() {
+    var child, id, ref;
+    this._cache = {};
+    ref = this._children;
+    for (id in ref) {
+      child = ref[id];
+      child.clear();
+    }
+    this._children = {};
+    this._numChildren = 0;
+    this._value = void 0;
+    if (this.parent != null) {
+      return this.parent.set(this.key, void 0);
+    }
+  };
+
   Ref.prototype.destroy = function() {
     var child, id, ref;
     ref = this._children;
@@ -333,9 +349,13 @@ var Ref$1 = Ref = (function() {
     oldValue = this.get(key);
     this._mutate(key);
     if (value == null) {
-      this.value(index(this.value(), key));
+      if (isObject$1(key)) {
+        this.value(index(this.value(), key));
+      } else {
+        this.index(key, value, false);
+      }
     } else {
-      this.index(key, value);
+      this.index(key, value, false);
     }
     this._triggerSet(key, value, oldValue);
     this._triggerSetChildren(key, value, oldValue);
@@ -407,19 +427,22 @@ var Ref$1 = Ref = (function() {
     return new Ref(index({}, this.get(key)));
   };
 
-  Ref.prototype.index = function(key, value, obj, prev) {
+  Ref.prototype.index = function(key, value, get, obj) {
     var next, prop, props;
+    if (get == null) {
+      get = true;
+    }
     if (obj == null) {
       obj = this.value();
     }
     if (this.parent) {
-      return this.parent.index(this.key + '.' + key, value);
+      return this.parent.index(this.key + '.' + key, value, get);
     }
     if (isNumber$1(key)) {
       key = String(key);
     }
     props = key.split('.');
-    if (value == null) {
+    if (get) {
       while (prop = props.shift()) {
         if (!props.length) {
           return obj != null ? obj[prop] : void 0;
@@ -427,6 +450,12 @@ var Ref$1 = Ref = (function() {
         obj = obj != null ? obj[prop] : void 0;
       }
       return;
+    }
+    if (this._value == null) {
+      this._value = {};
+      if (obj == null) {
+        obj = this._value;
+      }
     }
     while (prop = props.shift()) {
       if (!props.length) {
@@ -457,7 +486,7 @@ var Ref$1 = Ref = (function() {
 var methods;
 var refer;
 
-methods = ['extend', 'get', 'index', 'ref', 'set', 'value', 'on', 'off', 'one', 'trigger'];
+methods = ['extend', 'get', 'index', 'ref', 'set', 'value', 'clear', 'destroy', 'on', 'off', 'one', 'trigger'];
 
 refer = function(state, ref) {
   var fn, i, len, method, wrapper;

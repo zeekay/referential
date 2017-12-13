@@ -30,8 +30,22 @@ export default class Ref
 
     @
 
+  # clear everything
+  clear: ()->
+    @_cache = {}
+
+    child.clear() for id, child of @_children
+    @_children = {}
+    @_numChildren = 0
+
+    #clear out the values
+    @_value = undefined
+
+    if @parent?
+      @parent.set @key, undefined
+
   # Removes reference
-  destroy: ->
+  destroy: () ->
     child.destroy() for id, child of @_children
     delete @_cache
     delete @_children
@@ -83,9 +97,14 @@ export default class Ref
     @_mutate key
 
     unless value?
-      @value objectAssign @value(), key
+      # avoid strings/nulls etc being thrown into object assign
+      if isObject key
+        @value objectAssign @value(), key
+      # fall back to standard assignment by setting key to ull/undefined
+      else
+        @index key, value, false
     else
-      @index key, value
+      @index key, value, false
 
     # set event
     @_triggerSet key, value, oldValue
@@ -140,22 +159,27 @@ export default class Ref
     new Ref objectAssign {}, @get key
 
   # Walk tree using key, optionally update value
-  index: (key, value, obj=@value(), prev) ->
+  index: (key, value, get=true, obj=@value()) ->
     if @parent
-      return @parent.index @key + '.' + key, value
+      return @parent.index @key + '.' + key, value, get
 
     if isNumber key
       key = String key
 
     props = key.split '.'
 
-    unless value?
+    if get
       # Get is simple, doesn't need to create properties as it goes
       while prop = props.shift()
         unless props.length
           return obj?[prop]
         obj = obj?[prop]
       return
+
+    if !@_value?
+      @_value = {}
+      if !obj?
+        obj = @_value
 
     # Set version creates tree if necessary
     while prop = props.shift()
