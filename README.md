@@ -33,7 +33,7 @@ console.log(render()) // Hello world
 
 ## Install
 ```bash
-$ npm install referential
+$ npm install referential --save
 ```
 
 ## Usage
