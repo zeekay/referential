@@ -19,7 +19,7 @@
     "tree"
   ],
   "main": "lib/referential.js",
-  "module": "lib/referential.mjs",
+  "module": "lib/referential.es.js",
   "files": [
     "lib/",
     "src/"
