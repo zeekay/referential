@@ -51,7 +51,7 @@ export default class Ref
     delete @_children
     @off '*'
 
-    if @parent
+    if @parent && @parent._children
       delete @parent._children[@_id]
       @parent._numChildren--
     @
@@ -96,15 +96,7 @@ export default class Ref
 
     @_mutate key
 
-    unless value?
-      # avoid strings/nulls etc being thrown into object assign
-      if isObject key
-        @value objectAssign @value(), key
-      # fall back to standard assignment by setting key to ull/undefined
-      else
-        @index key, value, false
-    else
-      @index key, value, false
+    @index key, value, false
 
     # set event
     @_triggerSet key, value, oldValue

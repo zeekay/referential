@@ -298,7 +298,7 @@ var Ref$1 = Ref = (function() {
     delete this._cache;
     delete this._children;
     this.off('*');
-    if (this.parent) {
+    if (this.parent && this.parent._children) {
       delete this.parent._children[this._id];
       this.parent._numChildren--;
     }
@@ -348,15 +348,7 @@ var Ref$1 = Ref = (function() {
     }
     oldValue = this.get(key);
     this._mutate(key);
-    if (value == null) {
-      if (isObject$1(key)) {
-        this.value(index(this.value(), key));
-      } else {
-        this.index(key, value, false);
-      }
-    } else {
-      this.index(key, value, false);
-    }
+    this.index(key, value, false);
     this._triggerSet(key, value, oldValue);
     this._triggerSetChildren(key, value, oldValue);
     return this;
