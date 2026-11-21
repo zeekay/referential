@@ -1,5 +1,7 @@
 # referential
 
+[![Open in Hanzo](https://hanzo.app/badges/open-in-hanzo.svg)](https://hanzo.app/dev/open?repo=github.com/zeekay/referential&ref=master&action=open) [![Edit with Hanzo](https://hanzo.app/badges/edit-with-hanzo.svg)](https://hanzo.app/dev/open?repo=github.com/zeekay/referential&ref=master&action=edit)
+
 [![npm][npm-img]][npm-url]
 [![build][build-img]][build-url]
 [![dependencies][dependencies-img]][dependencies-url]
